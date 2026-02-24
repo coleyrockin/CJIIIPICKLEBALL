@@ -5,6 +5,8 @@ Professional static website for **CJ's Pickleball** — bringing the world toget
 🌐 **Live site:** [cjspickleball.com](https://cjspickleball.com)  
 📘 **Facebook:** [CJ's Pickleball Page](https://www.facebook.com/people/CJs-Pickleball-Page/100089379470047/)
 
+![Website Preview](screenshot.png)
+
 ---
 
 ## Project Structure
