@@ -1,9 +1,65 @@
-# CJ's Pickleball
+# CJ's Pickleball Website
 
-Professional static website for **CJ's Pickleball** — bringing the world together to love pickleball.
+This site was built for my dad's pickleball community to give his Facebook audience a professional home for:
 
-🌐 **Live site:** [cjspickleball.com](https://cjspickleball.com)  
+1. CJ's story and community mission
+2. Easy-to-use deal codes
+3. A clean way for new players and partners to connect
+
 📘 **Facebook:** [CJ's Pickleball Page](https://www.facebook.com/people/CJs-Pickleball-Page/100089379470047/)
+
+---
+
+## Site Preview
+
+Desktop:
+
+![CJ's Pickleball website desktop preview](site-preview.png)
+
+Mobile:
+
+![CJ's Pickleball website mobile preview](site-preview-mobile.png)
+
+---
+
+## Run Locally
+
+```bash
+bash scripts/start-local.sh
+```
+
+Then open `http://127.0.0.1:4173` in your browser.  
+Stop with `Ctrl+C`.
+
+---
+
+## Current Discount Links (Updated February 24, 2026)
+
+These offers were added from CJ's Facebook deals post (dated May 8, 2025):
+
+1. Holbrook: `https://holbrookpickleball.com/cjroberts`
+2. HUDEF: `https://hudefsport.com?sca_ref=4372136.7bZvbguDdl` (codes: `CJR15` or `CJR30`)
+3. Mint Sport: `https://mintsport.com/discount/cjpickle`
+4. Crown: `https://crownpickleball.store/cjroberts`
+5. Revolin Sports: `https://rstr.co/revolin/6321`
+6. FLiK: `https://flikpickleball.com/?ref=CJROBERTS&sub_id=`
+7. ONIX Pickleball: `https://www.onixpickleball.com/cjpickle`
+8. TopspinPro Training Aid: `https://topspinpro.com/pickleball-training-aid/ref/cjr`
+9. SpinPro: `https://topspinpro.com/spinpro-for-pickleball/ref/cjr`
+10. NETX Quiet Pickleballs: `https://netxbrand.com?sca_ref=9376042.qoX7azPHqpq`
+
+Note: most offers are link-based. HUDEF currently has the explicit checkout codes.
+
+---
+
+## Updating Discount Codes
+
+Edit the `<!-- ===== DISCOUNTS ===== -->` section in `index.html`.
+
+```html
+<span class="coupon-code" data-code="YOUR_CODE">YOUR_CODE</span>
+<button class="copy-btn" data-target="YOUR_CODE">Copy</button>
+```
 
 ---
 
@@ -11,68 +67,11 @@ Professional static website for **CJ's Pickleball** — bringing the world toget
 
 ```
 CJIIIPICKLEBALL/
-├── index.html        ← Main website (homepage)
-├── css/
-│   └── styles.css    ← All styles (responsive, mobile-first)
-├── js/
-│   └── main.js       ← Mobile nav, copy-to-clipboard, animations
-├── images/           ← Place logo.png here (download from Facebook)
-├── CNAME             ← Custom domain for GitHub Pages
-└── .nojekyll         ← Disables Jekyll so GitHub Pages serves files as-is
+├── index.html
+├── css/styles.css
+├── js/main.js
+├── images/logo.png
+├── scripts/start-local.sh
+├── site-preview.png
+└── site-preview-mobile.png
 ```
-
----
-
-## Hosting (GitHub Pages — Free)
-
-This site is hosted on **GitHub Pages** — completely free, no server needed.
-
-### Setup Steps
-
-1. Go to your repository on GitHub.
-2. Click **Settings → Pages**.
-3. Under **Source**, select `Deploy from a branch`.
-4. Choose branch `main` (or `master`) and folder `/ (root)`.
-5. Click **Save**.
-
-GitHub will publish your site at `https://<username>.github.io/CJIIIPICKLEBALL/`.
-
-### Custom Domain (cjspickleball.com)
-
-1. In your domain registrar (e.g., GoDaddy, Namecheap), add these DNS records:
-
-   | Type  | Name | Value                    |
-   |-------|------|--------------------------|
-   | A     | @    | 185.199.108.153          |
-   | A     | @    | 185.199.109.153          |
-   | A     | @    | 185.199.110.153          |
-   | A     | @    | 185.199.111.153          |
-   | CNAME | www  | `<username>.github.io`   |
-
-2. In GitHub → Settings → Pages → Custom domain, enter `cjspickleball.com` and enable **Enforce HTTPS**.
-
-The `CNAME` file in this repo is already set to `cjspickleball.com`.
-
----
-
-## Adding the Logo
-
-1. Download your profile/cover photo from your Facebook page.
-2. Save it as `images/logo.png` in this repository.
-3. The `<img>` in `index.html` will automatically display it in the navbar.
-   If no image is found, the text "CJ's Pickleball" is shown as a fallback.
-
----
-
-## Updating Discount Codes
-
-Open `index.html` and find the `<!-- ===== DISCOUNTS ===== -->` section.  
-Each deal card has a `data-code` attribute you can update with real partner codes:
-
-```html
-<span class="coupon-code" data-code="YOUR_CODE">YOUR_CODE</span>
-<button class="copy-btn" data-target="YOUR_CODE">Copy</button>
-```
-
-Visitors click **Copy** and the code is instantly copied to their clipboard.
-

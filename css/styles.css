@@ -413,6 +413,15 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 .deal-description { font-size: .9rem; color: var(--color-text-muted); flex: 1; }
 
+.deal-code-note {
+  font-size: .84rem;
+  font-weight: 600;
+  color: var(--color-primary-dark);
+  background: rgba(46,125,50,.08);
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+}
+
 .coupon-block {
   display: flex;
   align-items: center;
