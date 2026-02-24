@@ -7,6 +7,12 @@ Professional static website for **CJ's Pickleball** — bringing the world toget
 
 ---
 
+## Website Preview
+
+![CJ's Pickleball Website](https://github.com/user-attachments/assets/5cb95b21-53bb-4a99-9dc5-683e5196d7f4)
+
+---
+
 ## Project Structure
 
 ```
