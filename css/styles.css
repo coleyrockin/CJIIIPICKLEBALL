@@ -31,7 +31,7 @@
   --shadow-lg: 0 8px 32px rgba(0,0,0,.14);
 
   --max-width: 1160px;
-  --nav-height: 72px;
+  --nav-height: 74px;
   --transition: 0.22s ease;
 }
 
@@ -177,7 +177,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .nav-logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   font-family: var(--font-heading);
   font-size: 1.15rem;
   font-weight: 700;
@@ -185,13 +185,22 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   flex-shrink: 0;
 }
 
-.logo-img { height: 46px; width: auto; border-radius: 50%; }
+.logo-img {
+  height: 54px;
+  width: 54px;
+  border-radius: 50%;
+  border: 2px solid rgba(249,168,37,.45);
+  box-shadow: 0 0 0 2px rgba(0,0,0,.08);
+  background: #000;
+}
 
 .logo-text {
   display: flex;
   flex-direction: column;
   line-height: 1.15;
-  font-size: 1.1rem;
+  font-size: 1rem;
+  letter-spacing: .01em;
+  color: var(--color-primary-dark);
 }
 
 .nav-menu {
@@ -718,6 +727,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 @media (max-width: 700px) {
   :root { --nav-height: 64px; }
+
+  .nav-logo { gap: 8px; }
+  .logo-img { height: 44px; width: 44px; }
+  .logo-text { display: none; }
 
   .nav-toggle { display: flex; }
 
