@@ -12,13 +12,7 @@ This site was built for my dad's pickleball community to give his Facebook audie
 
 ## Site Preview
 
-Desktop:
-
-![CJ's Pickleball website desktop preview](site-preview.png)
-
-Mobile:
-
-![CJ's Pickleball website mobile preview](site-preview-mobile.png)
+![CJ's Pickleball landing page](landing-page.png)
 
 ---
 
@@ -72,6 +66,5 @@ CJIIIPICKLEBALL/
 ├── js/main.js
 ├── images/logo.png
 ├── scripts/start-local.sh
-├── site-preview.png
-└── site-preview-mobile.png
+└── landing-page.png
 ```
