@@ -1,70 +1,55 @@
-# CJ's Pickleball Website
+# CJ's Pickleball
 
-This site was built for my dad's pickleball community to give his Facebook audience a professional home for:
+Pickleball website for "CJ's Pickleball" — a clean, responsive landing page deployed on GitHub Pages.
 
-1. CJ's story and community mission
-2. Easy-to-use deal codes
-3. A clean way for new players and partners to connect
-
-📘 **Facebook:** [CJ's Pickleball Page](https://www.facebook.com/people/CJs-Pickleball-Page/100089379470047/)
-
----
-
-## Site Preview
-
-![CJ's Pickleball landing page](landing-page.png)
+![HTML](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
+![CSS](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
+![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-222?style=flat&logo=github&logoColor=white)
 
 ---
 
-## Run Locally
+## About
+
+A professional landing page for a pickleball brand, featuring a responsive layout, hero sections, and image galleries. Built with semantic HTML, modern CSS, and vanilla JavaScript — deployed via GitHub Pages.
+
+## Features
+
+- Responsive design for mobile and desktop
+- Hero section with high-quality imagery
+- Clean, modern layout with CSS Grid and Flexbox
+- Lightweight — no frameworks or build tools
+- Live on GitHub Pages
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Markup | HTML5 (semantic) |
+| Styling | CSS3 |
+| Interactivity | JavaScript |
+| Hosting | GitHub Pages |
+
+## Getting Started
 
 ```bash
-bash scripts/start-local.sh
+git clone https://github.com/coleyrockin/CJIIIPICKLEBALL.git
+cd CJIIIPICKLEBALL
 ```
 
-Then open `http://127.0.0.1:4173` in your browser.  
-Stop with `Ctrl+C`.
-
----
-
-## Current Discount Links (Updated February 24, 2026)
-
-These offers were added from CJ's Facebook deals post (dated May 8, 2025):
-
-1. Holbrook: `https://holbrookpickleball.com/cjroberts`
-2. HUDEF: `https://hudefsport.com?sca_ref=4372136.7bZvbguDdl` (codes: `CJR15` or `CJR30`)
-3. Mint Sport: `https://mintsport.com/discount/cjpickle`
-4. Crown: `https://crownpickleball.store/cjroberts`
-5. Revolin Sports: `https://rstr.co/revolin/6321`
-6. FLiK: `https://flikpickleball.com/?ref=CJROBERTS&sub_id=`
-7. ONIX Pickleball: `https://www.onixpickleball.com/cjpickle`
-8. TopspinPro Training Aid: `https://topspinpro.com/pickleball-training-aid/ref/cjr`
-9. SpinPro: `https://topspinpro.com/spinpro-for-pickleball/ref/cjr`
-10. NETX Quiet Pickleballs: `https://netxbrand.com?sca_ref=9376042.qoX7azPHqpq`
-
-Note: most offers are link-based. HUDEF currently has the explicit checkout codes.
-
----
-
-## Updating Discount Codes
-
-Edit the `<!-- ===== DISCOUNTS ===== -->` section in `index.html`.
-
-```html
-<span class="coupon-code" data-code="YOUR_CODE">YOUR_CODE</span>
-<button class="copy-btn" data-target="YOUR_CODE">Copy</button>
-```
-
----
+Open `index.html` in your browser.
 
 ## Project Structure
 
 ```
-CJIIIPICKLEBALL/
-├── index.html
-├── css/styles.css
-├── js/main.js
-├── images/logo.png
-├── scripts/start-local.sh
-└── landing-page.png
+├── css/         # Stylesheets
+├── images/      # Photo assets
+├── js/          # Client-side scripts
+├── scripts/     # Build/utility scripts
+├── index.html   # Main entry point
+└── LICENSE
 ```
+
+---
+
+Built by [Boyd Roberts](https://github.com/coleyrockin)
