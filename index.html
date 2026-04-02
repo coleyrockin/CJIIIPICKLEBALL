@@ -3,24 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests; block-all-mixed-content" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" />
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()" />
   <meta name="referrer" content="no-referrer" />
   <meta name="description" content="CJ's Pickleball – bringing the world together one dink at a time. Find exclusive discount codes, gear picks, and connect with our community." />
   <meta name="keywords" content="pickleball, CJs Pickleball, discount codes, pickleball gear, community" />
   <meta property="og:title" content="CJ's Pickleball" />
   <meta property="og:description" content="Join the worldwide pickleball movement with CJ's Pickleball. Exclusive deals, tips, and community." />
-  <meta property="og:image" content="/images/logo.png" />
+  <meta property="og:image" content="https://coleyrockin.github.io/CJIIIPICKLEBALL/images/logo.png" />
+  <meta property="og:url" content="https://coleyrockin.github.io/CJIIIPICKLEBALL/" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="CJ's Pickleball" />
   <meta name="twitter:description" content="Join the worldwide pickleball movement with CJ's Pickleball. Exclusive deals, tips, and community." />
-  <meta name="twitter:image" content="/images/logo.png" />
+  <meta name="twitter:image" content="https://coleyrockin.github.io/CJIIIPICKLEBALL/images/logo.png" />
   <link rel="icon" type="image/png" href="images/logo.png" />
   <title>CJ's Pickleball | Bringing the World Together</title>
-  <link rel="stylesheet" href="css/styles.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" crossorigin />
 </head>
 <body>
 
@@ -83,12 +85,12 @@
   <!-- ===== ABOUT ===== -->
   <section class="about section" id="about">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal">
         <span class="section-label">Our Mission</span>
         <h2 class="section-title">Why CJ's Pickleball?</h2>
       </div>
       <div class="about-grid">
-        <div class="about-text">
+        <div class="about-text reveal">
           <p class="lead">
             CJ's Pickleball was born out of pure passion for the fastest-growing sport in the world.
             Our mission is simple: <strong>bring everyone together to love pickleball worldwide.</strong>
@@ -102,23 +104,23 @@
             Join Our Facebook Community →
           </a>
         </div>
-        <div class="about-features">
-          <div class="feature-card">
+        <div class="about-features reveal-stagger">
+          <div class="feature-card reveal" style="--stagger:0">
             <div class="feature-icon">🌍</div>
             <h3>Worldwide Community</h3>
             <p>Players from every corner of the globe united by one sport.</p>
           </div>
-          <div class="feature-card">
+          <div class="feature-card reveal" style="--stagger:1">
             <div class="feature-icon">🏷️</div>
             <h3>Exclusive Discounts</h3>
             <p>Members-only codes on paddles, balls, apparel, and more.</p>
           </div>
-          <div class="feature-card">
+          <div class="feature-card reveal" style="--stagger:2">
             <div class="feature-icon">🏆</div>
             <h3>Tips &amp; Coaching</h3>
             <p>Proven strategies and drills to elevate your game fast.</p>
           </div>
-          <div class="feature-card">
+          <div class="feature-card reveal" style="--stagger:3">
             <div class="feature-icon">❤️</div>
             <h3>Fun for All Levels</h3>
             <p>From first-timers to tournament players — everyone is welcome.</p>
@@ -131,14 +133,14 @@
   <!-- ===== DISCOUNTS ===== -->
   <section class="discounts section section-alt" id="discounts">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal">
         <span class="section-label">💰 Save Big</span>
         <h2 class="section-title">Exclusive Deals &amp; Discount Codes</h2>
         <p class="section-subtitle">Use CJ's partner links and promo codes to save on paddles, balls, and gear.</p>
       </div>
-      <div class="deals-grid">
+      <div class="deals-grid reveal-stagger">
 
-        <div class="deal-card">
+        <div class="deal-card reveal" style="--stagger:0">
           <div class="deal-badge">Partner Link</div>
           <div class="deal-brand">Holbrook</div>
           <p class="deal-description">Use CJ's Holbrook referral link for paddle and gear discounts.</p>
@@ -146,7 +148,7 @@
           <a href="https://holbrookpickleball.com/cjroberts" target="_blank" rel="noopener noreferrer" class="deal-link">Get Deal →</a>
         </div>
 
-        <div class="deal-card deal-card--featured">
+        <div class="deal-card deal-card--featured reveal" style="--stagger:1">
           <div class="deal-badge deal-badge--hot">🔥 Code + Link</div>
           <div class="deal-brand">HUDEF</div>
           <p class="deal-description">Use CJ's referral link and apply either code at checkout.</p>
@@ -161,7 +163,7 @@
           <a href="https://hudefsport.com?sca_ref=4372136.7bZvbguDdl" target="_blank" rel="noopener noreferrer" class="deal-link">Get Deal →</a>
         </div>
 
-        <div class="deal-card">
+        <div class="deal-card reveal" style="--stagger:2">
           <div class="deal-badge">Partner Link</div>
           <div class="deal-brand">Mint Sport</div>
           <p class="deal-description">Get Mint Sport savings through CJ's discount link.</p>
@@ -169,7 +171,7 @@
           <a href="https://mintsport.com/discount/cjpickle" target="_blank" rel="noopener noreferrer" class="deal-link">Get Deal →</a>
         </div>
 
-        <div class="deal-card">
+        <div class="deal-card reveal" style="--stagger:3">
           <div class="deal-badge">Partner Link</div>
           <div class="deal-brand">Crown</div>
           <p class="deal-description">Shop Crown products through CJ's referral deal link.</p>
@@ -177,7 +179,7 @@
           <a href="https://crownpickleball.store/cjroberts" target="_blank" rel="noopener noreferrer" class="deal-link">Get Deal →</a>
         </div>
 
-        <div class="deal-card">
+        <div class="deal-card reveal" style="--stagger:4">
           <div class="deal-badge">Partner Link</div>
           <div class="deal-brand">Revolin Sports</div>
           <p class="deal-description">Use CJ's Revolin partner link for current promotions.</p>
@@ -185,7 +187,7 @@
           <a href="https://rstr.co/revolin/6321" target="_blank" rel="noopener noreferrer" class="deal-link">Get Deal →</a>
         </div>
 
-        <div class="deal-card">
+        <div class="deal-card reveal" style="--stagger:5">
           <div class="deal-badge">Partner Link</div>
           <div class="deal-brand">FLiK</div>
           <p class="deal-description">Use CJ's FLiK referral link for available discounts.</p>
@@ -193,7 +195,7 @@
           <a href="https://flikpickleball.com/?ref=CJROBERTS" target="_blank" rel="noopener noreferrer" class="deal-link">Get Deal →</a>
         </div>
 
-        <div class="deal-card">
+        <div class="deal-card reveal" style="--stagger:6">
           <div class="deal-badge">Partner Link</div>
           <div class="deal-brand">ONIX Pickleball</div>
           <p class="deal-description">Shop ONIX gear through CJ's dedicated referral page.</p>
@@ -201,7 +203,7 @@
           <a href="https://www.onixpickleball.com/cjpickle" target="_blank" rel="noopener noreferrer" class="deal-link">Get Deal →</a>
         </div>
 
-        <div class="deal-card">
+        <div class="deal-card reveal" style="--stagger:7">
           <div class="deal-badge">Partner Link</div>
           <div class="deal-brand">TopspinPro Training Aid</div>
           <p class="deal-description">Pickleball training aid discount through CJ's referral link.</p>
@@ -209,7 +211,7 @@
           <a href="https://topspinpro.com/pickleball-training-aid/ref/cjr" target="_blank" rel="noopener noreferrer" class="deal-link">Get Deal →</a>
         </div>
 
-        <div class="deal-card">
+        <div class="deal-card reveal" style="--stagger:8">
           <div class="deal-badge">Partner Link</div>
           <div class="deal-brand">SpinPro</div>
           <p class="deal-description">Get SpinPro for pickleball through CJ's partner link.</p>
@@ -217,7 +219,7 @@
           <a href="https://topspinpro.com/spinpro-for-pickleball/ref/cjr" target="_blank" rel="noopener noreferrer" class="deal-link">Get Deal →</a>
         </div>
 
-        <div class="deal-card">
+        <div class="deal-card reveal" style="--stagger:9">
           <div class="deal-badge">Partner Link</div>
           <div class="deal-brand">NETX Quiet Pickleballs</div>
           <p class="deal-description">Quiet-ball deal access from CJ's NETX referral link.</p>
@@ -234,7 +236,7 @@
   <section class="community section" id="community">
     <div class="container">
       <div class="community-inner">
-        <div class="community-text">
+        <div class="community-text reveal">
           <span class="section-label">🤝 Join Us</span>
           <h2 class="section-title">Be Part of the<br /><span class="accent">CJ's Pickleball Family</span></h2>
           <p>
@@ -254,7 +256,7 @@
             Visit CJ's Facebook Page
           </a>
         </div>
-        <div class="community-card">
+        <div class="community-card reveal" style="--stagger:2">
           <div class="fb-card">
             <div class="fb-card-header">
               <div class="fb-avatar">CJ</div>
@@ -280,13 +282,13 @@
   <!-- ===== CONTACT ===== -->
   <section class="contact section section-alt" id="contact">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal">
         <span class="section-label">📬 Get in Touch</span>
         <h2 class="section-title">Contact CJ's Pickleball</h2>
         <p class="section-subtitle">Have a question, partnership inquiry, or just want to say hi?<br />Reach out — we'd love to hear from you!</p>
       </div>
-      <div class="contact-options">
-        <a href="https://www.facebook.com/people/CJs-Pickleball-Page/100089379470047/" target="_blank" rel="noopener noreferrer" class="contact-card">
+      <div class="contact-options reveal-stagger">
+        <a href="https://www.facebook.com/people/CJs-Pickleball-Page/100089379470047/" target="_blank" rel="noopener noreferrer" class="contact-card reveal" style="--stagger:0">
           <div class="contact-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.563 9.878v-6.988H7.898V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988A10.003 10.003 0 0 0 22 12z"/></svg>
           </div>
@@ -294,13 +296,13 @@
           <p>Message us on our Facebook page for the quickest response.</p>
           <span class="contact-cta">Message Us →</span>
         </a>
-        <a href="#discounts" class="contact-card">
+        <a href="#discounts" class="contact-card reveal" style="--stagger:1">
           <div class="contact-icon">🏷️</div>
           <h3>Deals &amp; Discounts</h3>
           <p>Looking for the latest codes? Check our deals section above.</p>
           <span class="contact-cta">See Deals →</span>
         </a>
-        <a href="https://www.facebook.com/people/CJs-Pickleball-Page/100089379470047/" target="_blank" rel="noopener noreferrer" class="contact-card">
+        <a href="https://www.facebook.com/people/CJs-Pickleball-Page/100089379470047/" target="_blank" rel="noopener noreferrer" class="contact-card reveal" style="--stagger:2">
           <div class="contact-icon">📢</div>
           <h3>Partnerships</h3>
           <p>Interested in partnering or sponsoring? Contact us on Facebook.</p>

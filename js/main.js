@@ -106,6 +106,24 @@
     yearEl.textContent = new Date().getFullYear();
   }
 
+  /* ---- Scroll Reveal ---- */
+  var reveals = document.querySelectorAll('.reveal');
+  if (reveals.length && 'IntersectionObserver' in window) {
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal--visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    reveals.forEach(function (el) { revealObserver.observe(el); });
+  } else {
+    // Fallback: show everything if no IntersectionObserver
+    reveals.forEach(function (el) { el.classList.add('reveal--visible'); });
+  }
+
   /* ---- Smooth-scroll active nav highlight ---- */
   var sections = document.querySelectorAll('section[id]');
   var navLinks = document.querySelectorAll('.nav-link[href^="#"]');
