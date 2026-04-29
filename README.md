@@ -13,7 +13,7 @@
 
 ---
 
-![Hero Preview](preview-hero-desktop.png)
+![Hero Preview](docs/screenshot.jpg)
 
 ---
 
