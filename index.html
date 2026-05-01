@@ -26,6 +26,8 @@
 </head>
 <body>
 
+  <div class="scroll-progress" id="scrollProgress"></div>
+
   <!-- ===== NAVIGATION ===== -->
   <header class="site-header" id="top">
     <nav class="navbar" aria-label="Main navigation">
@@ -55,6 +57,9 @@
   <!-- ===== HERO ===== -->
   <section class="hero" aria-label="Hero banner">
     <div class="hero-overlay"></div>
+    <span class="hero-deco hero-deco--a" aria-hidden="true">🏓</span>
+    <span class="hero-deco hero-deco--b" aria-hidden="true">🏓</span>
+    <span class="hero-deco hero-deco--c" aria-hidden="true">🏓</span>
     <div class="hero-content">
       <div class="hero-badge">🏓 Worldwide Pickleball Community</div>
       <h1 class="hero-title">Bringing the&nbsp;World<br />Together Through<br /><span class="accent">Pickleball</span></h1>
@@ -81,6 +86,32 @@
       <figcaption class="hero-photo-caption">Play. Compete. Connect.</figcaption>
     </figure>
   </section>
+
+  <!-- ===== PARTNER MARQUEE ===== -->
+  <div class="marquee-strip" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="marquee-item">Holbrook</span>
+      <span class="marquee-item">HUDEF</span>
+      <span class="marquee-item">Mint Sport</span>
+      <span class="marquee-item">Crown</span>
+      <span class="marquee-item">Revolin Sports</span>
+      <span class="marquee-item">FLiK</span>
+      <span class="marquee-item">ONIX</span>
+      <span class="marquee-item">TopspinPro</span>
+      <span class="marquee-item">SpinPro</span>
+      <span class="marquee-item">NETX</span>
+      <span class="marquee-item">Holbrook</span>
+      <span class="marquee-item">HUDEF</span>
+      <span class="marquee-item">Mint Sport</span>
+      <span class="marquee-item">Crown</span>
+      <span class="marquee-item">Revolin Sports</span>
+      <span class="marquee-item">FLiK</span>
+      <span class="marquee-item">ONIX</span>
+      <span class="marquee-item">TopspinPro</span>
+      <span class="marquee-item">SpinPro</span>
+      <span class="marquee-item">NETX</span>
+    </div>
+  </div>
 
   <!-- ===== ABOUT ===== -->
   <section class="about section" id="about">
@@ -125,6 +156,30 @@
             <h3>Fun for All Levels</h3>
             <p>From first-timers to tournament players — everyone is welcome.</p>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STATS ===== -->
+  <section class="stats" aria-label="Community stats">
+    <div class="container">
+      <div class="stats-grid reveal-stagger">
+        <div class="stat-item reveal" style="--stagger:0">
+          <span class="stat-number" data-target="10" data-suffix="+">0+</span>
+          <span class="stat-label">Partner Brands</span>
+        </div>
+        <div class="stat-item reveal" style="--stagger:1">
+          <span class="stat-number" data-target="5000" data-suffix="+">0+</span>
+          <span class="stat-label">Community Members</span>
+        </div>
+        <div class="stat-item reveal" style="--stagger:2">
+          <span class="stat-number" data-target="100" data-suffix="%">0%</span>
+          <span class="stat-label">Free to Join</span>
+        </div>
+        <div class="stat-item reveal" style="--stagger:3">
+          <span class="stat-number stat-number--text">🌍</span>
+          <span class="stat-label">Worldwide Reach</span>
         </div>
       </div>
     </div>
@@ -352,6 +407,8 @@
 
   <!-- Copy toast -->
   <div class="toast" id="toast" role="status" aria-live="polite">Code copied!</div>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">&#8593;</button>
 
   <script src="js/main.js"></script>
 </body>

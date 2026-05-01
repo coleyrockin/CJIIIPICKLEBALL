@@ -144,4 +144,68 @@
 
     sections.forEach(function (s) { observer.observe(s); });
   }
+
+  /* ---- Scroll Progress Bar ---- */
+  var progressEl = document.getElementById('scrollProgress');
+  function updateProgress() {
+    if (!progressEl) return;
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    var pct = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
+    progressEl.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress, { passive: true });
+
+  /* ---- Hero Floating Decorations (WAAPI) ---- */
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.hero-deco').forEach(function (el, i) {
+      el.animate(
+        [{ transform: 'translateY(0px)' }, { transform: 'translateY(-18px)' }],
+        { duration: 3200 + i * 400, iterations: Infinity, direction: 'alternate', easing: 'ease-in-out', delay: i * 600 }
+      );
+    });
+  }
+
+  /* ---- Stats Counter ---- */
+  var statEls = document.querySelectorAll('.stat-number[data-target]');
+  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (statEls.length && 'IntersectionObserver' in window) {
+    var statObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        statObserver.unobserve(entry.target);
+        var el = entry.target;
+        var target = parseInt(el.getAttribute('data-target'), 10);
+        var suffix = el.getAttribute('data-suffix') || '';
+        if (reducedMotion) { el.textContent = target.toLocaleString() + suffix; return; }
+        var duration = 1500;
+        var startTime = null;
+        function step(ts) {
+          if (!startTime) startTime = ts;
+          var p = Math.min((ts - startTime) / duration, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(eased * target).toLocaleString() + suffix;
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      });
+    }, { threshold: 0.5 });
+    statEls.forEach(function (el) { statObserver.observe(el); });
+  }
+
+  /* ---- Back to Top ---- */
+  var backToTopBtn = document.getElementById('backToTop');
+  if (backToTopBtn) {
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 400) {
+        backToTopBtn.classList.add('back-to-top--visible');
+      } else {
+        backToTopBtn.classList.remove('back-to-top--visible');
+      }
+    }, { passive: true });
+    backToTopBtn.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
 }());
