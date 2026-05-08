@@ -1,0 +1,66 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  static-smoke:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Verify required files
+        run: |
+          test -f index.html
+          test -f css/styles.css
+          test -f js/main.js
+
+      - name: Check local asset links
+        run: |
+          python3 - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+          from urllib.parse import unquote, urlparse
+
+          ROOT = Path.cwd()
+          SKIP_SCHEMES = {"", "http", "https", "mailto", "tel", "data", "javascript"}
+          LOCAL_ATTRS = {"href", "src", "poster"}
+
+          class LocalLinkParser(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.refs = []
+
+              def handle_starttag(self, tag, attrs):
+                  for name, value in attrs:
+                      if name in LOCAL_ATTRS and value:
+                          self.refs.append(value)
+
+          parser = LocalLinkParser()
+          parser.feed((ROOT / "index.html").read_text(encoding="utf-8"))
+
+          missing = []
+          for ref in parser.refs:
+              parsed = urlparse(ref)
+              if parsed.scheme in {"http", "https", "mailto", "tel", "data", "javascript"}:
+                  continue
+              if not parsed.path or parsed.path.startswith("#"):
+                  continue
+              if parsed.path.startswith("/"):
+                  target = ROOT / unquote(parsed.path.lstrip("/"))
+              else:
+                  target = ROOT / unquote(parsed.path)
+              if not target.exists():
+                  missing.append(ref)
+
+          if missing:
+              raise SystemExit("Missing local references: " + ", ".join(sorted(missing)))
+          PY
