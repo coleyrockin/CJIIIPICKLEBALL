@@ -93,7 +93,7 @@
     var original = btn.textContent;
     btn.textContent = 'Copied!';
     btn.classList.add('copied');
-    showToast('✅ Code copied to clipboard!');
+    showToast('Code copied to clipboard.');
     setTimeout(function () {
       btn.textContent = original;
       btn.classList.remove('copied');
@@ -159,8 +159,12 @@
   /* ---- Hero Floating Decorations (WAAPI) ---- */
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     document.querySelectorAll('.hero-deco').forEach(function (el, i) {
+      var rotate = window.getComputedStyle(el).getPropertyValue('--deco-rotate').trim() || '0deg';
       el.animate(
-        [{ transform: 'translateY(0px)' }, { transform: 'translateY(-18px)' }],
+        [
+          { transform: 'translateY(0px) rotate(' + rotate + ')' },
+          { transform: 'translateY(-18px) rotate(' + rotate + ')' }
+        ],
         { duration: 3200 + i * 400, iterations: Infinity, direction: 'alternate', easing: 'ease-in-out', delay: i * 600 }
       );
     });
