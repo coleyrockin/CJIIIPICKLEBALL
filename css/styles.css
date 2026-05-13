@@ -6,11 +6,9 @@
 :root {
   --color-primary: #247139;       /* deep court green */
   --color-primary-dark: #0f351a;
-  --color-primary-light: #62aa55;
   --color-accent: #ffb020;        /* pickleball gold */
   --color-accent-dark: #d98208;
   --color-court-blue: #154d6b;
-  --color-line: #f5f8ed;
   --color-facebook: #1877f2;
   --color-facebook-dark: #0d5cbf;
 
@@ -426,49 +424,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   color: rgba(255,255,255,.72);
 }
 
-.hero-photo-wrap {
-  position: relative;
-  z-index: 2;
-  justify-self: end;
-  width: min(430px, 34vw);
-  aspect-ratio: 2 / 3;
-  border-radius: 28px;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,.22);
-  box-shadow: 0 32px 60px rgba(0,0,0,.45), 0 0 0 1px rgba(255,255,255,.06) inset;
-  background: #0f1f12;
-}
-
-.hero-photo {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  filter: saturate(1.06) contrast(1.03);
-}
-
-.hero-photo-wrap::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(7,20,11,.74) 0%, rgba(7,20,11,.22) 46%, rgba(7,20,11,0) 74%);
-  pointer-events: none;
-}
-
-.hero-photo-caption {
-  position: absolute;
-  left: 16px;
-  right: 16px;
-  bottom: 14px;
-  z-index: 1;
-  font-family: var(--font-heading);
-  font-size: .9rem;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  font-weight: 700;
-  color: rgba(255,255,255,.92);
-}
-
 /* ---- About ---- */
 .about {
   background: linear-gradient(180deg, #fff 0%, var(--color-bg) 100%);
@@ -798,7 +753,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   border: 1px solid var(--color-border);
 }
 
-.fb-card-header,
 .scorecard-header {
   display: flex;
   align-items: center;
@@ -833,9 +787,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   color: var(--color-text-muted);
   margin-top: 2px;
 }
-
-.fb-card-body p { font-size: .95rem; color: var(--color-text-muted); margin-bottom: 10px; font-style: italic; }
-.fb-card-body .fb-meta { font-size: .83rem; font-style: normal; color: var(--color-text-muted); }
 
 .community-scorecard {
   position: relative;
@@ -1116,7 +1067,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   transform: translateY(0);
 }
 
-/* Stagger via nth-child — CSP (style-src 'self') blocks inline style="--stagger:N" attributes */
+/* Stagger via nth-child to keep markup CSP-clean. */
 .reveal-stagger > .reveal:nth-child(2)   { transition-delay: 0.1s; }
 .reveal-stagger > .reveal:nth-child(3)   { transition-delay: 0.2s; }
 .reveal-stagger > .reveal:nth-child(4)   { transition-delay: 0.3s; }

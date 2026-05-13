@@ -31,7 +31,7 @@ Built with semantic HTML5, modern CSS, and vanilla JavaScript. **Zero frameworks
 
 ## Highlights
 
-- 🎨 **Distinctive hero** — gradient backdrop, court photography, floating paddle decorations animated with the Web Animations API
+- 🎨 **Distinctive hero** — full-bleed court photography, layered contrast, and animated court-line accents via the Web Animations API
 - 📊 **Animated stats counter** — numbers count up as the section enters the viewport
 - 🎢 **Partner marquee strip** — gentle, infinite scroll showcasing every brand
 - 📈 **Scroll progress bar** — fixed top indicator that tracks page position
@@ -40,7 +40,8 @@ Built with semantic HTML5, modern CSS, and vanilla JavaScript. **Zero frameworks
 - ⬆️ **Back-to-top button** — appears after scrolling, smooth-scrolls to the hero
 - ✨ **Scroll-reveal animations** — staggered entrance for cards and sections
 - ♿ **A11y-first** — skip link, semantic landmarks, ARIA labels, keyboard focus rings, `prefers-reduced-motion` honored across CSS and WAAPI animations
-- 🛡️ **Hardened security headers** — strict CSP, Permissions-Policy, `referrer=no-referrer`, `upgrade-insecure-requests`
+- 🛡️ **Hardened security headers** — Netlify `_headers` plus meta fallbacks for strict CSP, Permissions-Policy, `referrer=no-referrer`, and `upgrade-insecure-requests`
+- ✅ **CI smoke checks** — verifies required files, JavaScript syntax, CSP JSON-LD hash freshness, safe external-link attributes, and local asset references
 - 📱 **Truly responsive** — mobile-first breakpoints at 480 / 700 / 900 px, with a hamburger menu and stacked grids
 - 🔍 **SEO-ready** — Open Graph, Twitter Card, JSON-LD organization schema, canonical link
 
@@ -100,9 +101,12 @@ CJIIIPICKLEBALL/
 │   └── hero-court.jpg
 ├── docs/
 │   └── screenshot.jpg      # Used for README + Open Graph preview
+├── .github/workflows/
+│   └── ci.yml              # Static smoke checks for pushes and pull requests
 ├── scripts/
 │   └── start-local.sh      # Local dev server (python3 http.server)
 ├── index.html              # Single-page entry point
+├── _headers                # Netlify response headers for security + caching
 ├── .nojekyll               # Disable Jekyll processing on static hosts
 ├── LICENSE                 # MIT
 └── README.md
@@ -118,7 +122,7 @@ Hosted on **Netlify** with continuous deployment from `main`:
 Push to main → Netlify auto-deploys → live in ~30s
 ```
 
-No build step. The site is plain static files; Netlify serves them as-is. Custom security headers are declared via `<meta http-equiv>` tags in `index.html`.
+No build step. The site is plain static files; Netlify serves them as-is. Custom security headers are declared in `_headers`, with compatible meta fallbacks in `index.html`.
 
 To deploy your own fork, connect the repo in the Netlify dashboard and accept the default static-site settings.
 

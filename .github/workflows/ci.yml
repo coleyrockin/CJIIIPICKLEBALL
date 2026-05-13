@@ -19,48 +19,88 @@ jobs:
 
       - name: Verify required files
         run: |
+          test -f _headers
           test -f index.html
           test -f css/styles.css
           test -f js/main.js
+          test -f images/hero-court.jpg
+          test -f images/logo.png
+          test -f docs/screenshot.jpg
+
+      - name: Check JavaScript syntax
+        run: node --check js/main.js
+
+      - name: Check CSP JSON-LD hash
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const crypto = require('crypto');
+          const html = fs.readFileSync('index.html', 'utf8');
+          const headers = fs.readFileSync('_headers', 'utf8');
+          const match = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
+          if (!match) throw new Error('JSON-LD script missing');
+          const hash = 'sha256-' + crypto.createHash('sha256').update(match[1]).digest('base64');
+          if (!html.includes(hash) || !headers.includes(hash)) {
+            throw new Error('CSP JSON-LD hash missing or stale: ' + hash);
+          }
+          NODE
 
       - name: Check local asset links
         run: |
           python3 - <<'PY'
           from html.parser import HTMLParser
           from pathlib import Path
+          import re
           from urllib.parse import unquote, urlparse
 
           ROOT = Path.cwd()
-          SKIP_SCHEMES = {"", "http", "https", "mailto", "tel", "data", "javascript"}
+          EXTERNAL_SCHEMES = {"http", "https", "mailto", "tel", "data", "javascript"}
           LOCAL_ATTRS = {"href", "src", "poster"}
 
           class LocalLinkParser(HTMLParser):
               def __init__(self):
                   super().__init__()
                   self.refs = []
+                  self.blank_links = []
 
               def handle_starttag(self, tag, attrs):
+                  attr_map = dict(attrs)
                   for name, value in attrs:
                       if name in LOCAL_ATTRS and value:
                           self.refs.append(value)
+                  if tag == "a" and attr_map.get("target") == "_blank":
+                      rel = set((attr_map.get("rel") or "").lower().split())
+                      if not {"noopener", "noreferrer"}.issubset(rel):
+                          self.blank_links.append(attr_map.get("href", "<missing href>"))
+
+          def local_target(ref, base=ROOT):
+              parsed = urlparse(ref)
+              if parsed.scheme in EXTERNAL_SCHEMES:
+                  return None
+              if not parsed.path or parsed.path.startswith("#"):
+                  return None
+              if parsed.path.startswith("/"):
+                  return ROOT / unquote(parsed.path.lstrip("/"))
+              return base / unquote(parsed.path)
 
           parser = LocalLinkParser()
           parser.feed((ROOT / "index.html").read_text(encoding="utf-8"))
 
           missing = []
           for ref in parser.refs:
-              parsed = urlparse(ref)
-              if parsed.scheme in {"http", "https", "mailto", "tel", "data", "javascript"}:
-                  continue
-              if not parsed.path or parsed.path.startswith("#"):
-                  continue
-              if parsed.path.startswith("/"):
-                  target = ROOT / unquote(parsed.path.lstrip("/"))
-              else:
-                  target = ROOT / unquote(parsed.path)
-              if not target.exists():
+              target = local_target(ref)
+              if target and not target.exists():
                   missing.append(ref)
 
+          css_text = (ROOT / "css/styles.css").read_text(encoding="utf-8")
+          for ref in re.findall(r"url\\((['\\\"]?)(.*?)\\1\\)", css_text):
+              url = ref[1].strip()
+              target = local_target(url, base=ROOT / "css")
+              if target and not target.resolve().exists():
+                  missing.append(url)
+
+          if parser.blank_links:
+              raise SystemExit("target=_blank links missing noopener noreferrer: " + ", ".join(parser.blank_links))
           if missing:
               raise SystemExit("Missing local references: " + ", ".join(sorted(missing)))
           PY
