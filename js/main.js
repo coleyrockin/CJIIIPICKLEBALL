@@ -106,6 +106,10 @@
     yearEl.textContent = new Date().getFullYear();
   }
 
+  var sections = document.querySelectorAll('section[id]');
+  var navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   /* ---- Scroll Reveal ---- */
   var reveals = document.querySelectorAll('.reveal');
   if (reveals.length && 'IntersectionObserver' in window) {
@@ -124,26 +128,84 @@
     reveals.forEach(function (el) { el.classList.add('reveal--visible'); });
   }
 
-  /* ---- Smooth-scroll active nav highlight ---- */
-  var sections = document.querySelectorAll('section[id]');
-  var navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+  function getSectionFromHash(hash) {
+    if (!hash || hash === '#') return null;
+    var id = hash.charAt(0) === '#' ? hash.slice(1) : hash;
+    try {
+      id = decodeURIComponent(id);
+    } catch (err) {
+      return null;
+    }
+    var section = document.getElementById(id);
+    return section && section.matches('section[id]') ? section : null;
+  }
 
+  function revealSection(section) {
+    section.classList.add('reveal--visible');
+    section.querySelectorAll('.reveal').forEach(function (el) {
+      el.classList.add('reveal--visible');
+    });
+  }
+
+  function setActiveNav(id) {
+    navLinks.forEach(function (link) {
+      link.classList.toggle('nav-link--active', link.getAttribute('href') === '#' + id);
+    });
+  }
+
+  function scrollToSection(section, behavior) {
+    var scrollMarginTop = parseFloat(window.getComputedStyle(section).scrollMarginTop) || 0;
+    var targetTop = section.getBoundingClientRect().top + window.pageYOffset - scrollMarginTop;
+    window.scrollTo({
+      top: Math.max(0, targetTop),
+      behavior: behavior || 'smooth'
+    });
+  }
+
+  function syncHashSection(shouldScroll, behavior) {
+    var section = getSectionFromHash(window.location.hash);
+    if (!section) return;
+    revealSection(section);
+    setActiveNav(section.id);
+    if (shouldScroll) {
+      window.requestAnimationFrame(function () {
+        scrollToSection(section, behavior || 'auto');
+      });
+    }
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+    link.addEventListener('click', function (event) {
+      var section = getSectionFromHash(link.getAttribute('href'));
+      if (!section) return;
+      event.preventDefault();
+      if (window.history && window.history.pushState) {
+        window.history.pushState(null, '', '#' + section.id);
+      } else {
+        window.location.hash = section.id;
+      }
+      revealSection(section);
+      setActiveNav(section.id);
+      scrollToSection(section, reducedMotion ? 'auto' : 'smooth');
+    });
+  });
+
+  /* ---- Smooth-scroll active nav highlight ---- */
   if (sections.length && navLinks.length && 'IntersectionObserver' in window) {
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          navLinks.forEach(function (link) {
-            link.classList.remove('nav-link--active');
-            if (link.getAttribute('href') === '#' + entry.target.id) {
-              link.classList.add('nav-link--active');
-            }
-          });
+          setActiveNav(entry.target.id);
         }
       });
     }, { rootMargin: '-40% 0px -55% 0px' });
 
     sections.forEach(function (s) { observer.observe(s); });
   }
+  window.addEventListener('hashchange', function () {
+    syncHashSection(true, 'auto');
+  });
+  syncHashSection(true, 'auto');
 
   /* ---- Scroll Progress Bar ---- */
   var progressEl = document.getElementById('scrollProgress');
@@ -172,7 +234,6 @@
 
   /* ---- Stats Counter ---- */
   var statEls = document.querySelectorAll('.stat-number[data-target]');
-  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (statEls.length && 'IntersectionObserver' in window) {
     var statObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
