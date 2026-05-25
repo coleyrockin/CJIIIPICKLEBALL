@@ -10,8 +10,8 @@
   var logoText = document.getElementById('logo-text');
   if (logoImg && logoText) {
     logoImg.addEventListener('error', function () {
-      logoImg.style.display = 'none';
-      logoText.style.display = 'flex';
+      logoImg.classList.add('logo-img--hidden');
+      logoText.classList.add('logo-text--fallback');
     });
   }
 
@@ -87,7 +87,7 @@
     var el = document.createElement('textarea');
     el.value = text;
     el.setAttribute('readonly', '');
-    el.style.cssText = 'position:absolute;left:-9999px;top:-9999px;';
+    el.className = 'copy-buffer';
     document.body.appendChild(el);
     el.select();
     try {
@@ -180,6 +180,11 @@
     if (shouldScroll) {
       window.requestAnimationFrame(function () {
         scrollToSection(section, behavior || 'auto');
+        setActiveNav(section.id);
+        window.setTimeout(function () {
+          scrollToSection(section, 'auto');
+          setActiveNav(section.id);
+        }, 80);
       });
     }
   }
@@ -201,21 +206,43 @@
   });
 
   /* ---- Smooth-scroll active nav highlight ---- */
-  if (sections.length && navLinks.length && 'IntersectionObserver' in window) {
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          setActiveNav(entry.target.id);
-        }
-      });
-    }, { rootMargin: '-40% 0px -55% 0px' });
+  var activeNavTicking = false;
 
-    sections.forEach(function (s) { observer.observe(s); });
+  function updateActiveNavFromScroll() {
+    if (!sections.length || !navLinks.length) return;
+    var marker = window.pageYOffset + Math.min(window.innerHeight * 0.35, 220);
+    var currentSection = null;
+    sections.forEach(function (section) {
+      if (section.offsetTop <= marker) {
+        currentSection = section;
+      }
+    });
+    if (currentSection) {
+      setActiveNav(currentSection.id);
+    } else {
+      navLinks.forEach(function (link) {
+        link.classList.remove('nav-link--active');
+      });
+    }
   }
+
+  function requestActiveNavUpdate() {
+    if (activeNavTicking) return;
+    activeNavTicking = true;
+    window.requestAnimationFrame(function () {
+      activeNavTicking = false;
+      updateActiveNavFromScroll();
+    });
+  }
+
+  window.addEventListener('scroll', requestActiveNavUpdate, { passive: true });
+  window.addEventListener('resize', requestActiveNavUpdate, { passive: true });
   window.addEventListener('hashchange', function () {
     syncHashSection(true, 'auto');
+    requestActiveNavUpdate();
   });
   syncHashSection(true, 'auto');
+  updateActiveNavFromScroll();
 
   /* ---- Scroll Progress Bar ---- */
   var progressEl = document.getElementById('scrollProgress');

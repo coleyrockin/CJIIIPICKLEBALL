@@ -35,7 +35,7 @@ Built with semantic HTML5, modern CSS, and vanilla JavaScript. **Zero frameworks
 - 📊 **Animated stats counter** — numbers count up as the section enters the viewport
 - 🎢 **Partner marquee strip** — gentle, infinite scroll showcasing every brand
 - 📈 **Scroll progress bar** — fixed top indicator that tracks page position
-- 🎯 **Active section nav** — current section is highlighted in the navbar via IntersectionObserver
+- 🎯 **Active section nav** — current section is highlighted from scroll position and hash navigation
 - 💸 **Copy-to-clipboard codes** — one-click coupon copy with a toast confirmation
 - ⬆️ **Back-to-top button** — appears after scrolling, smooth-scrolls to the hero
 - ✨ **Scroll-reveal animations** — staggered entrance for cards and sections

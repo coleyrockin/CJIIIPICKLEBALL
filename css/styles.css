@@ -250,6 +250,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   box-shadow: 0 0 0 2px rgba(15,53,26,.08), 0 8px 18px rgba(15,53,26,.14);
   background: #000;
 }
+.logo-img--hidden { display: none; }
 
 .logo-text {
   display: flex;
@@ -259,6 +260,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   letter-spacing: .01em;
   color: var(--color-primary-dark);
 }
+.logo-text.logo-text--fallback { display: flex; }
 
 .nav-menu {
   display: flex;
@@ -443,6 +445,13 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   grid-template-columns: 1fr 1fr;
   gap: clamp(42px, 6vw, 76px);
   align-items: start;
+}
+.about-grid > *,
+.about-features,
+.community-inner > *,
+.deals-grid > *,
+.contact-options > * {
+  min-width: 0;
 }
 
 .about-text {
@@ -692,6 +701,15 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .copy-btn:hover { background: var(--color-primary-dark); }
 .copy-btn.copied { background: var(--color-accent-dark); }
+
+.copy-buffer {
+  position: fixed;
+  left: -9999px;
+  top: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
 
 .deal-link {
   font-family: var(--font-heading);
@@ -1160,7 +1178,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 @media (max-width: 480px) {
   .hero-actions { flex-direction: column; align-items: flex-start; }
-  .btn { width: 100%; justify-content: center; }
+  .btn { width: 100%; justify-content: center; white-space: normal; text-align: center; }
   .deals-grid { grid-template-columns: 1fr; }
   .contact-options { grid-template-columns: 1fr; }
   .deal-card { padding: 66px 18px 20px; }
