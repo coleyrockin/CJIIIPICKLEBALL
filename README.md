@@ -26,6 +26,7 @@ Built with semantic HTML5, modern CSS, and vanilla JavaScript. **Zero frameworks
 
 🔗 **Live site:** [cjspickleball.netlify.app](https://cjspickleball.netlify.app)
 📘 **Facebook:** [CJ's Pickleball Page](https://www.facebook.com/people/CJs-Pickleball-Page/100089379470047/)
+🔖 **Roadmap:** [ROADMAP.md](ROADMAP.md)
 
 ---
 
@@ -128,9 +129,27 @@ To deploy your own fork, connect the repo in the Netlify dashboard and accept th
 
 ---
 
+## Project status
+
+- ✅ Implemented: static single-page site, responsive UI, navigation behavior, copy-to-clipboard, security headers, and CI smoke checks.
+- ⚪ Planned: content governance and stronger release/process documentation (tracked in `ROADMAP.md`).
+
+---
+
+## How to test
+
+No JavaScript build tooling is required. Run documentation-safe checks:
+
+```bash
+node --check js/main.js
+test -f _headers && test -f index.html && test -f css/styles.css && test -f js/main.js && test -f images/hero-court.jpg && test -f images/logo.png && test -f docs/screenshot.jpg
+```
+
+---
+
 ## Browser Support
 
-Tested on the latest two versions of Chrome, Safari, Firefox, and Edge.
+Manual checks are performed against modern Chromium/WebKit/Gecko browsers, with accessibility checks included in the roadmap.
 Graceful degradation:
 
 - No IntersectionObserver → all reveal animations fall back to visible.
