@@ -21,29 +21,23 @@ jobs:
         run: |
           test -f _headers
           test -f index.html
-          test -f css/styles.css
+          test -f css/base.css
+          test -f css/components.css
+          test -f css/nav.css
+          test -f css/hero.css
+          test -f css/sections.css
+          test -f css/responsive.css
           test -f js/main.js
           test -f images/hero-court.jpg
           test -f images/logo.png
           test -f docs/screenshot.jpg
+          test -f scripts/check-csp-hashes.js
 
       - name: Check JavaScript syntax
         run: node --check js/main.js
 
-      - name: Check CSP JSON-LD hash
-        run: |
-          node - <<'NODE'
-          const fs = require('fs');
-          const crypto = require('crypto');
-          const html = fs.readFileSync('index.html', 'utf8');
-          const headers = fs.readFileSync('_headers', 'utf8');
-          const match = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
-          if (!match) throw new Error('JSON-LD script missing');
-          const hash = 'sha256-' + crypto.createHash('sha256').update(match[1]).digest('base64');
-          if (!html.includes(hash) || !headers.includes(hash)) {
-            throw new Error('CSP JSON-LD hash missing or stale: ' + hash);
-          }
-          NODE
+      - name: Check CSP & SRI hashes (JSON-LD + main.js)
+        run: node scripts/check-csp-hashes.js
 
       - name: Check local asset links
         run: |
@@ -92,12 +86,13 @@ jobs:
               if target and not target.exists():
                   missing.append(ref)
 
-          css_text = (ROOT / "css/styles.css").read_text(encoding="utf-8")
-          for ref in re.findall(r"url\\((['\\\"]?)(.*?)\\1\\)", css_text):
-              url = ref[1].strip()
-              target = local_target(url, base=ROOT / "css")
-              if target and not target.resolve().exists():
-                  missing.append(url)
+          for css_path in (ROOT / "css").glob("*.css"):
+              css_text = css_path.read_text(encoding="utf-8")
+              for ref in re.findall(r"url\((['\"]?)(.*?)\1\)", css_text):
+                  url = ref[1].strip()
+                  target = local_target(url, base=ROOT / "css")
+                  if target and not target.resolve().exists():
+                      missing.append(url)
 
           if parser.blank_links:
               raise SystemExit("target=_blank links missing noopener noreferrer: " + ", ".join(parser.blank_links))

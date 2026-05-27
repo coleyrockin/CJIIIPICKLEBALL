@@ -1,0 +1,217 @@
+/* =============================================
+   CJ's Pickleball — Components
+   Buttons, badges, marquee, toast, scroll progress,
+   back-to-top, scroll-reveal
+   ============================================= */
+
+/* ---- Buttons ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-size: .9rem;
+  font-weight: 700;
+  min-height: 48px;
+  padding: 13px 26px;
+  border-radius: var(--radius-pill);
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition), border-color var(--transition);
+  white-space: nowrap;
+}
+
+.btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.btn:active { transform: translateY(0); }
+
+.btn-primary {
+  background: linear-gradient(135deg, #2384ff, var(--color-facebook-dark));
+  color: #fff;
+  box-shadow: 0 12px 24px rgba(24,119,242,.22);
+}
+.btn-primary:hover { background: linear-gradient(135deg, var(--color-facebook), #0b50a8); }
+
+.btn-secondary {
+  background: linear-gradient(135deg, #ffc94d, var(--color-accent));
+  color: var(--color-text);
+  box-shadow: 0 12px 24px rgba(255,176,32,.22);
+}
+.btn-secondary:hover { background: linear-gradient(135deg, #ffd66d, var(--color-accent-dark)); }
+
+.btn-outline {
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  padding: 11px 24px;
+}
+.btn-outline:hover { background: var(--color-primary); color: #fff; }
+
+.btn-large { padding: 16px 32px; font-size: 1rem; }
+
+.btn-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* ---- Partner Marquee Strip ---- */
+.marquee-strip {
+  background: #fff;
+  border-bottom: 1px solid var(--color-border);
+  padding: 14px 0;
+  overflow: clip;
+  position: relative;
+  width: 100%;
+  max-width: 100vw;
+  contain: paint;
+}
+.marquee-strip::before,
+.marquee-strip::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  z-index: 2;
+  pointer-events: none;
+}
+.marquee-strip::before { left: 0; background: linear-gradient(to right, #fff, transparent); }
+.marquee-strip::after  { right: 0; background: linear-gradient(to left, #fff, transparent); }
+
+.marquee-track {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  width: max-content;
+  animation: marquee-scroll 24s linear infinite;
+}
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-heading);
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  padding: 0 28px;
+}
+.marquee-item::after {
+  content: '\00B7';
+  color: var(--color-primary);
+  font-size: 1.2rem;
+  margin-left: 28px;
+  line-height: 1;
+}
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ---- Toast ---- */
+.toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--color-primary-dark);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: .9rem;
+  font-weight: 700;
+  padding: 12px 24px;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease, transform .3s ease;
+  z-index: 9999;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ---- Scroll Progress Bar ---- */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: var(--color-primary);
+  z-index: 200;
+  pointer-events: none;
+  transition: width 0.1s linear;
+}
+
+/* ---- Back to Top ---- */
+.back-to-top {
+  position: fixed;
+  bottom: 32px;
+  right: 28px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: opacity var(--transition), transform var(--transition), background var(--transition), box-shadow var(--transition);
+  z-index: 150;
+}
+.back-to-top--visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.back-to-top:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+.back-to-top:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* ---- Scroll Reveal ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s cubic-bezier(.22,.61,.36,1), transform 0.7s cubic-bezier(.22,.61,.36,1);
+}
+
+.reveal.reveal--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger via nth-child to keep markup CSP-clean. */
+.reveal-stagger > .reveal:nth-child(2)   { transition-delay: 0.1s; }
+.reveal-stagger > .reveal:nth-child(3)   { transition-delay: 0.2s; }
+.reveal-stagger > .reveal:nth-child(4)   { transition-delay: 0.3s; }
+.reveal-stagger > .reveal:nth-child(5)   { transition-delay: 0.4s; }
+.reveal-stagger > .reveal:nth-child(n+6) { transition-delay: 0.5s; }
+
+/* No-JS fallback — without JS, the IntersectionObserver never fires,
+   so we make reveals visible by default. JS removes this class on load. */
+.no-js .reveal {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+/* ---- Copy buffer (hidden textarea for execCommand fallback) ---- */
+.copy-buffer {
+  position: fixed;
+  left: -9999px;
+  top: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}

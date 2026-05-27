@@ -1,0 +1,102 @@
+/* =============================================
+   CJ's Pickleball — Navigation
+   Header, navbar, hamburger toggle
+   ============================================= */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(251,252,247,.94);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: 0 12px 30px rgba(15,53,26,.06);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--nav-height);
+  width: 90%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  gap: 24px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  flex-shrink: 0;
+}
+
+.logo-img {
+  height: 54px;
+  width: 54px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,176,32,.58);
+  box-shadow: 0 0 0 2px rgba(15,53,26,.08), 0 8px 18px rgba(15,53,26,.14);
+  background: #000;
+}
+.logo-img--hidden { display: none; }
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+  font-size: 1rem;
+  letter-spacing: .01em;
+  color: var(--color-primary-dark);
+}
+.logo-text.logo-text--fallback { display: flex; }
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.nav-link {
+  font-family: var(--font-heading);
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  padding: 7px 12px;
+  border-radius: var(--radius-sm);
+  transition: color var(--transition), background var(--transition);
+}
+.nav-link:hover { color: var(--color-primary); background: rgba(46,125,50,.08); }
+
+.navbar .nav-cta {
+  background: linear-gradient(135deg, #2384ff, var(--color-facebook-dark));
+  color: #fff;
+  border-radius: var(--radius-pill);
+  padding: 8px 18px;
+}
+.navbar .nav-cta:hover { background: linear-gradient(135deg, var(--color-facebook), #0b50a8); }
+
+.navbar .nav-link--active { color: var(--color-primary); border-bottom: 2px solid var(--color-primary); padding-bottom: 5px; }
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+}
+.hamburger {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--color-text);
+  border-radius: 2px;
+  transition: transform var(--transition), opacity var(--transition);
+}
+.nav-toggle[aria-expanded="true"] .hamburger:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .hamburger:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] .hamburger:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }

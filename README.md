@@ -4,6 +4,7 @@
 
 **Bringing the World Together Through Pickleball**
 
+[![CI](https://github.com/coleyrockin/CJIIIPICKLEBALL/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/coleyrockin/CJIIIPICKLEBALL/actions/workflows/ci.yml)
 [![Live Site](https://img.shields.io/badge/Live%20Site-cjspickleball.netlify.app-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://cjspickleball.netlify.app)
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
@@ -11,6 +12,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-2e7d32?style=for-the-badge)](LICENSE)
 
 </div>
+
+> The repo name **CJIII** stands for "CJ the third" — the site is for CJ Roberts III. Not a typo.
+
 
 ---
 
@@ -93,7 +97,12 @@ You can override the port and host:
 ```
 CJIIIPICKLEBALL/
 ├── css/
-│   └── styles.css          # All styles — tokens, layout, components, animations
+│   ├── base.css            # Reset, root variables, typography, base utilities
+│   ├── components.css      # Buttons, marquee, toast, scroll progress, reveal, back-to-top
+│   ├── nav.css             # Site header, navbar, hamburger toggle
+│   ├── hero.css            # Hero section + floating decorations
+│   ├── sections.css        # About, stats, discounts, community, contact, footer
+│   └── responsive.css      # All media queries (loaded LAST to override base styles)
 ├── js/
 │   └── main.js             # Nav, copy-to-clipboard, scroll reveal, stats, back-to-top
 ├── images/                 # Logos and hero photography
@@ -105,7 +114,8 @@ CJIIIPICKLEBALL/
 ├── .github/workflows/
 │   └── ci.yml              # Static smoke checks for pushes and pull requests
 ├── scripts/
-│   └── start-local.sh      # Local dev server (python3 http.server)
+│   ├── start-local.sh      # Local dev server (python3 http.server)
+│   └── check-csp-hashes.js # Verifies CSP + SRI hashes for JSON-LD and main.js
 ├── index.html              # Single-page entry point
 ├── _headers                # Netlify response headers for security + caching
 ├── .nojekyll               # Disable Jekyll processing on static hosts
@@ -138,12 +148,53 @@ To deploy your own fork, connect the repo in the Netlify dashboard and accept th
 
 ## How to test
 
-No JavaScript build tooling is required. Run documentation-safe checks:
+No JavaScript build tooling is required. Run the documentation-safe checks:
 
 ```bash
 node --check js/main.js
-test -f _headers && test -f index.html && test -f css/styles.css && test -f js/main.js && test -f images/hero-court.jpg && test -f images/logo.png && test -f docs/screenshot.jpg
+node scripts/check-csp-hashes.js
+test -f _headers && test -f index.html && test -f js/main.js && \
+  test -f css/base.css && test -f css/components.css && test -f css/nav.css && \
+  test -f css/hero.css && test -f css/sections.css && test -f css/responsive.css && \
+  test -f images/hero-court.jpg && test -f images/logo.png && test -f docs/screenshot.jpg
 ```
+
+---
+
+## CSP Hash Maintenance
+
+The Content-Security-Policy is hash-pinned. Two `'sha256-...'` entries appear in
+both the `<meta http-equiv="Content-Security-Policy">` tag in [index.html](index.html)
+and the `Content-Security-Policy` line in [_headers](_headers):
+
+1. The inline `<script type="application/ld+json">` JSON-LD organization block.
+2. The external `js/main.js` file (also pinned via the `integrity="..."` SRI
+   attribute on its `<script src>` tag).
+
+**Any change to the JSON-LD block or to `js/main.js` invalidates its hash.**
+The browser will silently refuse to load the resource and the site will be
+visibly broken (broken counter, missing nav behavior, missing structured data).
+
+To verify both hashes are fresh:
+
+```bash
+node scripts/check-csp-hashes.js
+```
+
+On drift the script prints the file at fault and the exact hash to substitute,
+then exits non-zero — CI uses this same script. To update by hand:
+
+```bash
+node -e "const fs=require('fs'),c=require('crypto');console.log('sha256-'+c.createHash('sha256').update(fs.readFileSync('js/main.js')).digest('base64'))"
+```
+
+Paste the result into:
+
+- `script-src` in [index.html](index.html) `<meta http-equiv="Content-Security-Policy">`
+- `script-src` in [_headers](_headers)
+- the `integrity="..."` attribute on `<script src="js/main.js" ...>` in [index.html](index.html)
+
+Then re-run `node scripts/check-csp-hashes.js` to confirm.
 
 ---
 

@@ -5,6 +5,9 @@
 (function () {
   'use strict';
 
+  /* ---- Remove no-js fallback class so reveal animations engage ---- */
+  document.body.classList.remove('no-js');
+
   /* ---- Logo image fallback ---- */
   var logoImg = document.getElementById('logoImg');
   var logoText = document.getElementById('logo-text');
@@ -269,9 +272,15 @@
     });
   }
 
-  /* ---- Stats Counter ---- */
+  /* ---- Stats Counter ----
+     Markup ships with the final value so the page is fully usable with
+     JS disabled. With JS, we reset to "0<suffix>" and animate up on enter. */
   var statEls = document.querySelectorAll('.stat-number[data-target]');
-  if (statEls.length && 'IntersectionObserver' in window) {
+  if (statEls.length && 'IntersectionObserver' in window && !reducedMotion) {
+    statEls.forEach(function (el) {
+      var suffix = el.getAttribute('data-suffix') || '';
+      el.textContent = '0' + suffix;
+    });
     var statObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
@@ -279,7 +288,6 @@
         var el = entry.target;
         var target = parseInt(el.getAttribute('data-target'), 10);
         var suffix = el.getAttribute('data-suffix') || '';
-        if (reducedMotion) { el.textContent = target.toLocaleString() + suffix; return; }
         var duration = 1500;
         var startTime = null;
         function step(ts) {

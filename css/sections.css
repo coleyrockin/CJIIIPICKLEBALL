@@ -1,0 +1,666 @@
+/* =============================================
+   CJ's Pickleball — Sections
+   About, stats, discounts, community, contact, footer
+   ============================================= */
+
+/* ---- About ---- */
+.about {
+  background: linear-gradient(180deg, #fff 0%, var(--color-bg) 100%);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(42px, 6vw, 76px);
+  align-items: start;
+}
+.about-grid > *,
+.about-features,
+.community-inner > *,
+.deals-grid > *,
+.contact-options > * {
+  min-width: 0;
+}
+
+.about-text {
+  border-left: 4px solid var(--color-accent);
+  padding-left: clamp(18px, 3vw, 30px);
+}
+
+.about-text p { color: var(--color-text-muted); margin-bottom: 16px; }
+.about-text .btn { margin-top: 8px; }
+
+.about-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.feature-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 24px 20px 22px;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+.feature-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+}
+.feature-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+
+.feature-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 58px;
+  height: 34px;
+  margin-bottom: 14px;
+  border-radius: var(--radius-pill);
+  background: rgba(36,113,57,.1);
+  color: var(--color-primary-dark);
+  font-family: var(--font-heading);
+  font-size: .68rem;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.feature-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+  color: var(--color-text);
+}
+
+.feature-card p { font-size: .88rem; color: var(--color-text-muted); }
+
+/* ---- Stats Section ---- */
+.stats {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(245,248,237,.12) 1px, transparent 1px) 0 0 / 25% 100%,
+    linear-gradient(135deg, var(--color-primary-dark), #123d28 52%, var(--color-court-blue));
+  padding: clamp(54px, 7vw, 76px) 0;
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: rgba(255,255,255,.14);
+  box-shadow: 0 24px 60px rgba(0,0,0,.18);
+}
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-height: 148px;
+  justify-content: center;
+  padding: 24px 12px;
+  background: rgba(7,31,16,.34);
+}
+.stat-number {
+  font-family: var(--font-heading);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 900;
+  color: var(--color-accent);
+  line-height: 1;
+  display: block;
+}
+.stat-number--text { font-size: clamp(1.6rem, 3vw, 2.4rem); }
+.stat-label {
+  font-family: var(--font-heading);
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.7);
+}
+
+/* ---- Discounts ---- */
+.discounts {
+  position: relative;
+}
+
+.discounts::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent calc(50% - 1px), rgba(36,113,57,.1) 50%, transparent calc(50% + 1px)),
+    linear-gradient(180deg, transparent calc(50% - 1px), rgba(36,113,57,.08) 50%, transparent calc(50% + 1px));
+  background-size: 220px 220px;
+  opacity: .32;
+  pointer-events: none;
+}
+
+.discounts .container {
+  position: relative;
+  z-index: 1;
+}
+
+.deals-toolbar {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: -28px auto 42px;
+}
+
+.deals-toolbar span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 7px 14px;
+  border: 1px solid rgba(36,113,57,.14);
+  border-radius: var(--radius-pill);
+  background: rgba(255,255,255,.78);
+  color: var(--color-primary-dark);
+  font-family: var(--font-heading);
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  box-shadow: var(--shadow-sm);
+}
+
+.deals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.deal-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 72px 22px 22px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+.deal-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+
+.deal-card::before {
+  content: attr(data-brand);
+  position: absolute;
+  top: 18px;
+  left: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 54px;
+  height: 34px;
+  padding: 0 12px;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary-dark);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+
+.deal-card--featured {
+  order: -1;
+  grid-column: span 2;
+  border-color: rgba(255,176,32,.56);
+  background:
+    linear-gradient(135deg, rgba(255,176,32,.16), rgba(255,255,255,.02)),
+    linear-gradient(135deg, #12361e, #0d2b16);
+  box-shadow: 0 0 0 1px rgba(255,176,32,.4), var(--shadow-lg);
+  color: #fff;
+}
+
+.deal-card--featured::before {
+  background: var(--color-accent);
+  color: var(--color-text);
+}
+
+.deal-badge {
+  position: absolute;
+  top: 22px;
+  right: 20px;
+  background: rgba(36,113,57,.1);
+  color: var(--color-primary-dark);
+  font-family: var(--font-heading);
+  font-size: .66rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  border-radius: var(--radius-pill);
+}
+.deal-badge--hot {
+  background: rgba(255,176,32,.16);
+  color: var(--color-accent);
+}
+
+.deal-brand {
+  font-family: var(--font-heading);
+  font-size: 1.22rem;
+  font-weight: 800;
+  color: var(--color-text);
+  margin-top: 6px;
+}
+
+.deal-description { font-size: .9rem; color: var(--color-text-muted); flex: 1; }
+
+.deal-card--featured .deal-brand,
+.deal-card--featured .deal-description,
+.deal-card--featured .deal-link {
+  color: #fff;
+}
+
+.deal-card--featured .deal-description {
+  color: rgba(255,255,255,.78);
+}
+
+.deal-code-note {
+  font-size: .84rem;
+  font-weight: 600;
+  color: var(--color-primary-dark);
+  background: rgba(36,113,57,.08);
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+}
+
+.coupon-block {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,.94);
+  border: 1.5px dashed rgba(36,113,57,.78);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+}
+
+.coupon-code {
+  font-family: 'Courier New', monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  letter-spacing: .08em;
+  flex: 1;
+  user-select: all;
+}
+
+.copy-btn {
+  font-family: var(--font-heading);
+  font-size: .78rem;
+  font-weight: 700;
+  background: var(--color-primary);
+  color: #fff;
+  padding: 5px 12px;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition);
+  flex-shrink: 0;
+}
+.copy-btn:hover { background: var(--color-primary-dark); }
+.copy-btn.copied { background: var(--color-accent-dark); }
+
+.deal-link {
+  font-family: var(--font-heading);
+  font-size: .85rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-top: 4px;
+  transition: color var(--transition);
+}
+.deal-link:hover { color: var(--color-primary-dark); }
+
+.deals-disclaimer {
+  text-align: center;
+  margin-top: 36px;
+  font-size: .85rem;
+  color: var(--color-text-muted);
+}
+.deals-disclaimer a { color: var(--color-primary); font-weight: 600; }
+
+/* ---- Community ---- */
+.community {
+  background:
+    linear-gradient(90deg, rgba(21,77,107,.06), transparent 34%),
+    #fff;
+}
+
+.community-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.community-text .section-label { text-align: left; }
+.community-text .section-title { text-align: left; margin-bottom: 18px; }
+.community-text p { color: var(--color-text-muted); margin-bottom: 18px; }
+
+.community-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+.community-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: .95rem;
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.community-list li span {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  box-shadow: inset 0 0 0 5px rgba(255,255,255,.75);
+  flex-shrink: 0;
+}
+
+/* ---- Facebook Card ---- */
+.fb-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--color-border);
+}
+
+.scorecard-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.fb-avatar {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.fb-name {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.fb-handle {
+  font-size: .8rem;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+.community-scorecard {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(255,176,32,.12), transparent 36%),
+    var(--color-surface);
+}
+
+.community-scorecard::before {
+  content: "";
+  position: absolute;
+  inset: 16px;
+  border: 1px solid rgba(36,113,57,.12);
+  border-radius: var(--radius-md);
+  pointer-events: none;
+}
+
+.scorecard-panel {
+  position: relative;
+  margin: 24px 0 18px;
+  padding: 22px;
+  border-radius: var(--radius-md);
+  background: #f4f8ef;
+  border: 1px solid var(--color-border);
+}
+
+.scorecard-panel span {
+  display: block;
+  margin-bottom: 8px;
+  font-family: var(--font-heading);
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.scorecard-panel p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-text);
+  font-style: italic;
+}
+
+.scorecard-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-border);
+}
+
+.scorecard-metrics div {
+  background: #fff;
+  padding: 14px 10px;
+}
+
+.scorecard-metrics strong,
+.scorecard-metrics span {
+  display: block;
+}
+
+.scorecard-metrics strong {
+  font-family: var(--font-heading);
+  font-size: .86rem;
+  color: var(--color-primary-dark);
+}
+
+.scorecard-metrics span {
+  margin-top: 2px;
+  font-size: .76rem;
+  color: var(--color-text-muted);
+}
+
+.fb-follow-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  justify-content: center;
+  margin-top: 18px;
+  background: var(--color-facebook);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: .9rem;
+  font-weight: 700;
+  padding: 12px 20px;
+  border-radius: var(--radius-pill);
+  transition: background var(--transition), transform var(--transition);
+}
+.fb-follow-btn:hover { background: var(--color-facebook-dark); transform: translateY(-2px); }
+.fb-follow-btn .btn-icon { width: 18px; height: 18px; }
+
+/* ---- Contact ---- */
+.contact-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.contact-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 32px 24px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  transition: box-shadow var(--transition), transform var(--transition);
+  color: var(--color-text);
+}
+.contact-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+
+.contact-card::after {
+  content: "";
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  top: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+}
+
+.contact-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  background: rgba(24,119,242,.09);
+  color: var(--color-primary-dark);
+  font-size: 1rem;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.contact-icon svg { width: 28px; height: 28px; fill: var(--color-facebook); }
+.contact-icon--text {
+  background: rgba(36,113,57,.1);
+  color: var(--color-primary);
+  letter-spacing: .05em;
+}
+
+.contact-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+.contact-card p { font-size: .9rem; color: var(--color-text-muted); flex: 1; }
+
+.contact-cta {
+  font-family: var(--font-heading);
+  font-size: .85rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+.contact-card:hover .contact-cta { color: var(--color-primary-dark); }
+
+/* ---- Footer ---- */
+.site-footer {
+  background:
+    linear-gradient(90deg, rgba(245,248,237,.06) 1px, transparent 1px) 0 0 / 96px 100%,
+    #0d2412;
+  color: rgba(255,255,255,.75);
+  padding: 60px 0 32px;
+}
+
+.footer-inner {
+  display: flex;
+  gap: 60px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+.footer-brand { flex: 0 0 220px; }
+
+.footer-logo {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #fff;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.footer-brand p { font-size: .9rem; line-height: 1.6; margin-bottom: 16px; }
+
+.footer-social {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-facebook);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: .82rem;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  transition: background var(--transition);
+}
+.footer-social svg { width: 16px; height: 16px; }
+.footer-social:hover { background: var(--color-facebook-dark); }
+
+.footer-nav { display: flex; gap: 48px; flex: 1; flex-wrap: wrap; }
+
+.footer-col h4 {
+  font-family: var(--font-heading);
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.5);
+  margin-bottom: 14px;
+}
+
+.footer-col ul { display: flex; flex-direction: column; gap: 9px; }
+.footer-col a {
+  font-size: .9rem;
+  color: rgba(255,255,255,.7);
+  transition: color var(--transition);
+}
+.footer-col a:hover { color: #fff; }
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.1);
+  padding-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 32px;
+  font-size: .82rem;
+  color: rgba(255,255,255,.45);
+  justify-content: space-between;
+}
+.footer-bottom a { color: rgba(255,255,255,.6); }
+.footer-bottom a:hover { color: #fff; }
+.footer-bottom strong { color: rgba(255,255,255,.7); }
