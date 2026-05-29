@@ -101,6 +101,15 @@
   line-height: 1;
 }
 
+/* Logo variant — applied by js/main.js when a partner logo asset loads. */
+.marquee-logo {
+  display: block;
+  height: 26px;
+  width: auto;
+  max-width: 132px;
+  object-fit: contain;
+}
+
 @keyframes marquee-scroll {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }

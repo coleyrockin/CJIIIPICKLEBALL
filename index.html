@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-lZPivY3JWl3OGRTyoB26W2/Lv141C6NpAksxEHeONBY=' 'sha256-2ziAW0y8D3foAlvrPeLtBwR7uJbtJq5riu4C8XiLeII='; style-src 'self' https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-lZPivY3JWl3OGRTyoB26W2/Lv141C6NpAksxEHeONBY=' 'sha256-Y/ef3qUxtt7lVSjGQK0bI5QMUA+l+/G6gCBfutRamUQ='; style-src 'self' https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" />
   <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()" />
   <meta name="referrer" content="no-referrer" />
   <meta name="description" content="CJ's Pickleball – bringing the world together one dink at a time. Find exclusive discount codes, gear picks, and connect with our community." />
@@ -30,12 +30,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" as="image" href="images/hero-court.webp" type="image/webp" media="(min-width: 701px)" fetchpriority="high" />
   <link rel="preload" as="image" href="images/hero-court-mobile.webp" type="image/webp" media="(max-width: 700px)" fetchpriority="high" />
-  <link rel="stylesheet" href="css/base.css?v=20260529-shine" />
-  <link rel="stylesheet" href="css/components.css?v=20260529-shine" />
-  <link rel="stylesheet" href="css/nav.css?v=20260529-shine" />
-  <link rel="stylesheet" href="css/hero.css?v=20260529-shine" />
-  <link rel="stylesheet" href="css/sections.css?v=20260529-shine" />
-  <link rel="stylesheet" href="css/responsive.css?v=20260529-shine" />
+  <link rel="stylesheet" href="css/base.css?v=20260529-shine2" />
+  <link rel="stylesheet" href="css/components.css?v=20260529-shine2" />
+  <link rel="stylesheet" href="css/nav.css?v=20260529-shine2" />
+  <link rel="stylesheet" href="css/hero.css?v=20260529-shine2" />
+  <link rel="stylesheet" href="css/sections.css?v=20260529-shine2" />
+  <link rel="stylesheet" href="css/responsive.css?v=20260529-shine2" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" crossorigin />
   <script type="application/ld+json">
   {
@@ -130,27 +130,31 @@
 
   <!-- ===== PARTNER MARQUEE ===== -->
   <div class="marquee-strip" aria-hidden="true">
+    <!-- Each item shows the brand name as text. If a matching logo file exists
+         in images/partners/, js/main.js swaps in the logo automatically (text
+         is the permanent fallback). Drop in real logos to activate — see
+         images/partners/README.md. -->
     <div class="marquee-track">
-      <span class="marquee-item">Holbrook</span>
-      <span class="marquee-item">HUDEF</span>
-      <span class="marquee-item">Mint Sport</span>
-      <span class="marquee-item">Crown</span>
-      <span class="marquee-item">Revolin Sports</span>
-      <span class="marquee-item">FLiK</span>
-      <span class="marquee-item">ONIX</span>
-      <span class="marquee-item">TopspinPro</span>
-      <span class="marquee-item">SpinPro</span>
-      <span class="marquee-item">NETX</span>
-      <span class="marquee-item">Holbrook</span>
-      <span class="marquee-item">HUDEF</span>
-      <span class="marquee-item">Mint Sport</span>
-      <span class="marquee-item">Crown</span>
-      <span class="marquee-item">Revolin Sports</span>
-      <span class="marquee-item">FLiK</span>
-      <span class="marquee-item">ONIX</span>
-      <span class="marquee-item">TopspinPro</span>
-      <span class="marquee-item">SpinPro</span>
-      <span class="marquee-item">NETX</span>
+      <span class="marquee-item" data-logo="images/partners/holbrook.svg">Holbrook</span>
+      <span class="marquee-item" data-logo="images/partners/hudef.svg">HUDEF</span>
+      <span class="marquee-item" data-logo="images/partners/mintsport.svg">Mint Sport</span>
+      <span class="marquee-item" data-logo="images/partners/crown.svg">Crown</span>
+      <span class="marquee-item" data-logo="images/partners/revolin.svg">Revolin Sports</span>
+      <span class="marquee-item" data-logo="images/partners/flik.svg">FLiK</span>
+      <span class="marquee-item" data-logo="images/partners/onix.svg">ONIX</span>
+      <span class="marquee-item" data-logo="images/partners/topspinpro.svg">TopspinPro</span>
+      <span class="marquee-item" data-logo="images/partners/spinpro.svg">SpinPro</span>
+      <span class="marquee-item" data-logo="images/partners/netx.svg">NETX</span>
+      <span class="marquee-item" data-logo="images/partners/holbrook.svg">Holbrook</span>
+      <span class="marquee-item" data-logo="images/partners/hudef.svg">HUDEF</span>
+      <span class="marquee-item" data-logo="images/partners/mintsport.svg">Mint Sport</span>
+      <span class="marquee-item" data-logo="images/partners/crown.svg">Crown</span>
+      <span class="marquee-item" data-logo="images/partners/revolin.svg">Revolin Sports</span>
+      <span class="marquee-item" data-logo="images/partners/flik.svg">FLiK</span>
+      <span class="marquee-item" data-logo="images/partners/onix.svg">ONIX</span>
+      <span class="marquee-item" data-logo="images/partners/topspinpro.svg">TopspinPro</span>
+      <span class="marquee-item" data-logo="images/partners/spinpro.svg">SpinPro</span>
+      <span class="marquee-item" data-logo="images/partners/netx.svg">NETX</span>
     </div>
   </div>
 
@@ -463,6 +467,6 @@
 
   <button class="back-to-top" id="backToTop" aria-label="Back to top">&#8593;</button>
 
-  <script src="js/main.js?v=20260529-shine" integrity="sha256-2ziAW0y8D3foAlvrPeLtBwR7uJbtJq5riu4C8XiLeII="></script>
+  <script src="js/main.js?v=20260529-shine2" integrity="sha256-Y/ef3qUxtt7lVSjGQK0bI5QMUA+l+/G6gCBfutRamUQ="></script>
 </body>
 </html>

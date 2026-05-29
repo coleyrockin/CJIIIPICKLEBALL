@@ -319,4 +319,28 @@
     });
   }
 
+  /* ---- Marquee partner logos (progressive enhancement) ----
+     Each .marquee-item ships with the brand name as text. If a matching
+     logo exists at its data-logo path, we preload it and — only on success —
+     swap the text for the image. A missing/broken file leaves the text
+     untouched (no broken-image icon). Adding a file to images/partners/
+     activates that brand with no code change. */
+  document.querySelectorAll('.marquee-item[data-logo]').forEach(function (item) {
+    var src = item.getAttribute('data-logo');
+    if (!src) return;
+    var probe = new Image();
+    probe.onload = function () {
+      var img = document.createElement('img');
+      img.src = src;
+      img.alt = item.textContent.trim();
+      img.className = 'marquee-logo';
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      while (item.firstChild) item.removeChild(item.firstChild);
+      item.appendChild(img);
+      item.classList.add('marquee-item--logo');
+    };
+    probe.src = src;
+  });
+
 }());
