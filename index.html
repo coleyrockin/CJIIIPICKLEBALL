@@ -30,12 +30,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" as="image" href="images/hero-court.webp" type="image/webp" media="(min-width: 701px)" fetchpriority="high" />
   <link rel="preload" as="image" href="images/hero-court-mobile.webp" type="image/webp" media="(max-width: 700px)" fetchpriority="high" />
-  <link rel="stylesheet" href="css/base.css?v=20260529-shine3" />
-  <link rel="stylesheet" href="css/components.css?v=20260529-shine3" />
-  <link rel="stylesheet" href="css/nav.css?v=20260529-shine3" />
-  <link rel="stylesheet" href="css/hero.css?v=20260529-shine3" />
-  <link rel="stylesheet" href="css/sections.css?v=20260529-shine3" />
-  <link rel="stylesheet" href="css/responsive.css?v=20260529-shine3" />
+  <link rel="stylesheet" href="css/base.css?v=20260529-shine4" />
+  <link rel="stylesheet" href="css/components.css?v=20260529-shine4" />
+  <link rel="stylesheet" href="css/nav.css?v=20260529-shine4" />
+  <link rel="stylesheet" href="css/hero.css?v=20260529-shine4" />
+  <link rel="stylesheet" href="css/sections.css?v=20260529-shine4" />
+  <link rel="stylesheet" href="css/responsive.css?v=20260529-shine4" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" crossorigin />
   <script type="application/ld+json">
   {
@@ -93,13 +93,18 @@
 
   <!-- ===== HERO ===== -->
   <section class="hero" aria-label="Hero banner">
-    <div class="hero-overlay"></div>
-    <span class="hero-deco hero-deco--a" aria-hidden="true"></span>
-    <span class="hero-deco hero-deco--b" aria-hidden="true"></span>
-    <span class="hero-deco hero-deco--c" aria-hidden="true"></span>
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <svg class="hero-court" viewBox="0 0 240 520" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+      <rect class="cl" x="20" y="20" width="200" height="480" rx="6" pathLength="1" />
+      <line class="cl cl-accent" x1="8" y1="260" x2="232" y2="260" pathLength="1" />
+      <line class="cl cl-accent" x1="20" y1="190" x2="220" y2="190" pathLength="1" />
+      <line class="cl cl-accent" x1="20" y1="330" x2="220" y2="330" pathLength="1" />
+      <line class="cl" x1="120" y1="20" x2="120" y2="190" pathLength="1" />
+      <line class="cl" x1="120" y1="330" x2="120" y2="500" pathLength="1" />
+    </svg>
     <div class="hero-content">
-      <div class="hero-badge">Official deals and community hub</div>
-      <h1 class="hero-title">Bringing the&nbsp;World<br />Together Through<br /><span class="accent">Pickleball</span></h1>
+      <span class="hero-kicker">Official deals &amp; community hub</span>
+      <h1 class="hero-title">Bringing the&nbsp;World Together Through <span class="accent">Pickleball</span></h1>
       <p class="hero-subtitle">
         Join thousands of players across the globe who share the love of the game.
         Exclusive deals, tips, and a community that welcomes everyone.
@@ -467,6 +472,6 @@
 
   <button class="back-to-top" id="backToTop" aria-label="Back to top">&#8593;</button>
 
-  <script src="js/main.js?v=20260529-shine3" integrity="sha256-E6XOAjCILZ/AuLwCE5KbjKMVAke40XN7jnAro+2TRVE="></script>
+  <script src="js/main.js?v=20260529-shine4" integrity="sha256-E6XOAjCILZ/AuLwCE5KbjKMVAke40XN7jnAro+2TRVE="></script>
 </body>
 </html>

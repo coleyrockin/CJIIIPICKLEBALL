@@ -1,20 +1,22 @@
 /* =============================================
-   CJ's Pickleball — Hero
-   Hero section, decorations, floating accents
+   CJ's Pickleball — Hero  (Night Court redesign)
+   Cinematic court banner, court-line motif, scorecard
    ============================================= */
 
 .hero {
   position: relative;
-  min-height: clamp(500px, 74svh, 660px);
+  min-height: clamp(560px, 82svh, 760px);
   /* JPEG-only fallback for browsers without image-set() support */
   background:
-    linear-gradient(90deg, rgba(6,25,12,.94) 0%, rgba(9,40,18,.86) 42%, rgba(9,40,18,.45) 70%, rgba(9,40,18,.25) 100%),
-    linear-gradient(180deg, rgba(6,25,12,.18), rgba(6,25,12,.62)),
+    radial-gradient(125% 120% at 14% 26%, rgba(4,18,9,.34), transparent 60%),
+    linear-gradient(90deg, rgba(5,20,10,.96) 0%, rgba(8,32,16,.88) 40%, rgba(8,32,16,.5) 68%, rgba(8,32,16,.26) 100%),
+    linear-gradient(180deg, rgba(5,20,10,.30), rgba(4,16,8,.74)),
     url("../images/hero-court.jpg") center right / cover no-repeat;
   /* Modern browsers: prefer WebP (~60% smaller), fall back to JPEG */
   background:
-    linear-gradient(90deg, rgba(6,25,12,.94) 0%, rgba(9,40,18,.86) 42%, rgba(9,40,18,.45) 70%, rgba(9,40,18,.25) 100%),
-    linear-gradient(180deg, rgba(6,25,12,.18), rgba(6,25,12,.62)),
+    radial-gradient(125% 120% at 14% 26%, rgba(4,18,9,.34), transparent 60%),
+    linear-gradient(90deg, rgba(5,20,10,.96) 0%, rgba(8,32,16,.88) 40%, rgba(8,32,16,.5) 68%, rgba(8,32,16,.26) 100%),
+    linear-gradient(180deg, rgba(5,20,10,.30), rgba(4,16,8,.74)),
     image-set(
       url("../images/hero-court.webp") type("image/webp"),
       url("../images/hero-court.jpg") type("image/jpeg")
@@ -22,7 +24,7 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-  padding: clamp(30px, 4vw, 48px) 5% clamp(14px, 2vw, 22px);
+  padding: clamp(40px, 6vw, 72px) 5% clamp(28px, 3vw, 40px);
   isolation: isolate;
 }
 
@@ -30,64 +32,93 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(245,248,237,.1) 1px, transparent 1px) 0 0 / 160px 100%,
-    linear-gradient(0deg, rgba(245,248,237,.08) 1px, transparent 1px) 0 0 / 100% 120px;
+    linear-gradient(90deg, rgba(245,248,237,.10) 1px, transparent 1px) 0 0 / 160px 100%,
+    linear-gradient(0deg, rgba(245,248,237,.07) 1px, transparent 1px) 0 0 / 100% 120px;
   mix-blend-mode: screen;
-  opacity: .42;
+  opacity: .4;
   pointer-events: none;
+  z-index: 1;
 }
+
+/* ---- Court-line motif (decorative; draws in on load) ---- */
+.hero-court {
+  position: absolute;
+  top: 50%;
+  right: -2%;
+  transform: translateY(-50%);
+  height: 132%;
+  width: auto;
+  max-width: 50%;
+  opacity: .55;
+  z-index: 1;
+  pointer-events: none;
+  filter: drop-shadow(0 8px 26px rgba(0,0,0,.4));
+}
+.hero-court .cl {
+  fill: none;
+  stroke: rgba(245,248,237,.6);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+.hero-court .cl-accent { stroke: var(--color-accent); opacity: .92; }
 
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 760px;
+  max-width: 720px;
 }
 
-.hero-badge {
+/* ---- Eyebrow / kicker ---- */
+.hero-kicker {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  background: rgba(255,255,255,.14);
-  color: rgba(255,255,255,.9);
+  gap: 10px;
   font-family: var(--font-heading);
-  font-size: .78rem;
-  font-weight: 700;
-  letter-spacing: .1em;
+  font-size: var(--fs-300);
+  font-weight: 800;
+  letter-spacing: .18em;
   text-transform: uppercase;
-  padding: 6px 16px;
-  border-radius: var(--radius-pill);
+  color: rgba(255,255,255,.92);
+  padding: 8px 16px;
   border: 1px solid rgba(255,255,255,.22);
-  margin-bottom: 22px;
-  backdrop-filter: blur(8px);
-}
-
-.hero-badge::before {
-  content: "";
-  width: 22px;
-  height: 2px;
-  background: var(--color-accent);
   border-radius: var(--radius-pill);
+  background: rgba(255,255,255,.08);
+  backdrop-filter: blur(8px);
+  margin-bottom: var(--space-3);
+}
+.hero-kicker::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 0 4px rgba(255,176,32,.22);
 }
 
 .hero-title {
   font-family: var(--font-heading);
-  font-size: clamp(2.55rem, 5.25vw, 5.2rem);
+  font-size: var(--fs-display);
   font-weight: 900;
-  line-height: 1;
+  line-height: .94;
+  letter-spacing: -.02em;
   color: #fff;
-  margin-bottom: 20px;
-  max-width: 800px;
-  text-shadow: 0 5px 28px rgba(0,0,0,.34);
+  margin-bottom: var(--space-3);
+  max-width: 15ch;
+  text-shadow: 0 6px 34px rgba(0,0,0,.4);
+}
+.hero-title .accent {
+  color: var(--color-accent);
+  position: relative;
+  white-space: nowrap;
 }
 
-.hero-title .accent { color: var(--color-accent); }
-
 .hero-subtitle {
-  font-size: clamp(1rem, 1.8vw, 1.2rem);
-  color: rgba(255,255,255,.86);
-  max-width: 560px;
-  margin-bottom: 26px;
-  line-height: 1.7;
+  font-size: var(--fs-500);
+  color: rgba(255,255,255,.88);
+  max-width: 52ch;
+  margin-bottom: var(--space-4);
+  line-height: 1.6;
 }
 
 .hero-actions {
@@ -97,103 +128,99 @@
   align-items: center;
 }
 
+/* ---- Proof scorecard ---- */
 .hero-proof {
   display: grid;
-  grid-template-columns: repeat(3, minmax(110px, 1fr));
-  gap: 1px;
-  max-width: 560px;
-  margin-top: 26px;
+  grid-template-columns: repeat(3, auto);
+  width: fit-content;
+  margin-top: var(--space-5);
   border: 1px solid rgba(255,255,255,.2);
   border-radius: var(--radius-md);
   overflow: hidden;
-  background: rgba(255,255,255,.16);
-  box-shadow: 0 18px 42px rgba(0,0,0,.18);
-  backdrop-filter: blur(10px);
+  background: rgba(7,28,14,.5);
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(12px);
+  position: relative;
 }
-
+.hero-proof::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+}
 .hero-proof div {
-  background: rgba(8,32,15,.58);
-  padding: 14px 16px;
+  padding: var(--space-3) clamp(18px, 3vw, 34px);
 }
-
+.hero-proof div + div {
+  border-left: 1px solid rgba(255,255,255,.14);
+}
 .hero-proof strong,
 .hero-proof span {
   display: block;
 }
-
 .hero-proof strong {
   font-family: var(--font-heading);
-  font-size: clamp(1.1rem, 2vw, 1.45rem);
+  font-size: var(--fs-700);
+  font-weight: 900;
   line-height: 1;
+  letter-spacing: -.02em;
   color: var(--color-accent);
 }
-
 .hero-proof span {
-  margin-top: 6px;
+  margin-top: 8px;
   font-family: var(--font-heading);
-  font-size: .68rem;
+  font-size: var(--fs-300);
   font-weight: 700;
   letter-spacing: .08em;
   text-transform: uppercase;
-  color: rgba(255,255,255,.72);
+  color: rgba(255,255,255,.74);
 }
 
-/* ---- Hero Decorations ---- */
-.hero-deco {
-  --deco-rotate: -18deg;
-  position: absolute;
-  width: 170px;
-  height: 2px;
-  background: rgba(245,248,237,.42);
-  opacity: 0.28;
-  pointer-events: none;
-  user-select: none;
-  z-index: 1;
-  transform: rotate(var(--deco-rotate));
-}
-.hero-deco::after {
-  content: "";
-  position: absolute;
-  left: 48%;
-  top: -36px;
-  width: 2px;
-  height: 72px;
-  background: inherit;
-}
-.hero-deco--a { top: 14%; right: 18%; }
-.hero-deco--b { --deco-rotate: 21deg; bottom: 20%; left: 7%; width: 120px; }
-.hero-deco--c { --deco-rotate: 7deg; top: 62%; right: 8%; width: 135px; }
-
-/* ---- Hero entrance (subtle; only when motion is allowed) ----
+/* ---- Entrance + motif draw (only when motion is allowed) ----
    Using no-preference means reduced-motion users skip straight to the
    final state — elements are never hidden, so nothing to reset. */
 @media (prefers-reduced-motion: no-preference) {
   .hero-content > * {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(16px);
     animation: hero-rise 0.7s cubic-bezier(.22,.61,.36,1) forwards;
   }
-  .hero-badge    { animation-delay: 0.05s; }
+  .hero-kicker   { animation-delay: 0.05s; }
   .hero-title    { animation-delay: 0.15s; }
   .hero-subtitle { animation-delay: 0.28s; }
   .hero-actions  { animation-delay: 0.40s; }
   .hero-proof    { animation-delay: 0.52s; }
 
   /* Gold underline drawn under the accent word once the title settles. */
-  .hero-title .accent { position: relative; }
   .hero-title .accent::after {
     content: "";
     position: absolute;
     left: 0;
     right: 0;
-    bottom: -0.04em;
-    height: 4px;
+    bottom: -0.08em;
+    height: 6px;
     border-radius: var(--radius-pill);
     background: var(--color-accent);
     transform: scaleX(0);
     transform-origin: left center;
-    animation: accent-draw 0.6s cubic-bezier(.22,.61,.36,1) 0.85s forwards;
+    animation: accent-draw 0.6s cubic-bezier(.22,.61,.36,1) 0.95s forwards;
   }
+
+  /* Court motif strokes draw themselves in, staggered. */
+  .hero-court .cl {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: court-draw 1.8s ease-out forwards;
+  }
+  .hero-court .cl:nth-child(1) { animation-delay: 0.30s; }
+  .hero-court .cl:nth-child(2) { animation-delay: 0.50s; }
+  .hero-court .cl:nth-child(3) { animation-delay: 0.70s; }
+  .hero-court .cl:nth-child(4) { animation-delay: 0.85s; }
+  .hero-court .cl:nth-child(5) { animation-delay: 1.00s; }
+  .hero-court .cl:nth-child(6) { animation-delay: 1.10s; }
 }
 
 @keyframes hero-rise {
@@ -201,4 +228,7 @@
 }
 @keyframes accent-draw {
   to { transform: scaleX(1); }
+}
+@keyframes court-draw {
+  to { stroke-dashoffset: 0; }
 }

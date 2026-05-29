@@ -34,6 +34,41 @@
   --max-width: 1180px;
   --nav-height: 74px;
   --transition: 0.22s ease;
+
+  /* ===== "Night Court" redesign tokens ===== */
+  /* Extended palette — promote court-blue to a real secondary, add a deep
+     night-court tone for bold dark bands and a warm chalk for light ones. */
+  --color-secondary: #154d6b;       /* court blue */
+  --color-secondary-dark: #0e3850;
+  --color-night: #08200f;           /* deep night-court green */
+  --color-night-2: #0f3320;
+  --color-cream: #f4efe1;           /* warm chalk */
+  --color-ink: #0c1810;             /* near-black for dark-band text accents */
+
+  /* Fluid modular type scale (~1.25 ratio) */
+  --fs-300: clamp(0.78rem, 0.74rem + 0.18vw, 0.88rem);
+  --fs-400: clamp(1rem, 0.96rem + 0.22vw, 1.13rem);
+  --fs-500: clamp(1.15rem, 1.05rem + 0.5vw, 1.4rem);
+  --fs-600: clamp(1.4rem, 1.2rem + 1vw, 1.95rem);
+  --fs-700: clamp(1.85rem, 1.5rem + 1.9vw, 2.85rem);
+  --fs-800: clamp(2.4rem, 1.75rem + 3.2vw, 4.2rem);
+  --fs-display: clamp(2.9rem, 1.7rem + 6vw, 6.5rem);
+
+  /* 8px spacing rhythm */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 40px;
+  --space-6: 48px;
+  --space-7: 64px;
+  --space-8: 80px;
+  --space-9: 96px;
+  --space-10: 120px;
+  --space-12: 160px;
+
+  /* Elevated shadow for focal elements (hero card, featured deal) */
+  --shadow-xl: 0 32px 80px rgba(6,25,12,.34);
 }
 
 /* ---- Reset & Base ---- */
