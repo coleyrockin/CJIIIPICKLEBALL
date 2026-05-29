@@ -231,6 +231,13 @@
   color: #fff;
 }
 
+/* Preserve and intensify the gold ring on hover (the generic
+   .deal-card:hover box-shadow would otherwise drop it). */
+.deal-card--featured:hover {
+  box-shadow: 0 0 0 2px rgba(255,176,32,.62), var(--shadow-lg);
+  transform: translateY(-4px);
+}
+
 .deal-card--featured::before {
   background: var(--color-accent);
   color: var(--color-text);
@@ -319,14 +326,16 @@
 .copy-btn.copied { background: var(--color-accent-dark); }
 
 .deal-link {
+  display: inline-block;
   font-family: var(--font-heading);
   font-size: .85rem;
   font-weight: 700;
   color: var(--color-primary);
   margin-top: 4px;
-  transition: color var(--transition);
+  transition: color var(--transition), transform var(--transition);
 }
 .deal-link:hover { color: var(--color-primary-dark); }
+.deal-card:hover .deal-link { transform: translateX(3px); }
 
 .deals-disclaimer {
   text-align: center;
@@ -579,12 +588,14 @@
 .contact-card p { font-size: .9rem; color: var(--color-text-muted); flex: 1; }
 
 .contact-cta {
+  display: inline-block;
   font-family: var(--font-heading);
   font-size: .85rem;
   font-weight: 700;
   color: var(--color-primary);
+  transition: color var(--transition), transform var(--transition);
 }
-.contact-card:hover .contact-cta { color: var(--color-primary-dark); }
+.contact-card:hover .contact-cta { color: var(--color-primary-dark); transform: translateX(3px); }
 
 /* ---- Footer ---- */
 .site-footer {
