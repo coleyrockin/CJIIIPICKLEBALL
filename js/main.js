@@ -330,14 +330,23 @@
     if (!src) return;
     var probe = new Image();
     probe.onload = function () {
-      var img = document.createElement('img');
-      img.src = src;
-      img.alt = item.textContent.trim();
-      img.className = 'marquee-logo';
-      img.loading = 'lazy';
-      img.decoding = 'async';
+      // Render the logo as a single-color silhouette via CSS mask so every
+      // brand adopts the strip's muted tone — a cohesive logo wall rather than
+      // a clash of brand colors. Box is sized to the logo's aspect ratio.
+      var ratio = probe.naturalHeight ? (probe.naturalWidth / probe.naturalHeight) : 3;
+      var h = 26;
+      var w = Math.min(Math.round(h * ratio), 150);
+      var logo = document.createElement('span');
+      logo.className = 'marquee-logo';
+      logo.setAttribute('role', 'img');
+      logo.setAttribute('aria-label', item.textContent.trim());
+      logo.style.width = w + 'px';
+      logo.style.height = h + 'px';
+      var url = "url('" + src + "')";
+      logo.style.webkitMaskImage = url;
+      logo.style.maskImage = url;
       while (item.firstChild) item.removeChild(item.firstChild);
-      item.appendChild(img);
+      item.appendChild(logo);
       item.classList.add('marquee-item--logo');
     };
     probe.src = src;

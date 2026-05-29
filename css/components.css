@@ -101,13 +101,20 @@
   line-height: 1;
 }
 
-/* Logo variant — applied by js/main.js when a partner logo asset loads. */
+/* Logo variant — applied by js/main.js when a partner logo asset loads.
+   The logo is painted as a single-color silhouette (CSS mask filled with the
+   item's text color) so every brand shares the strip's muted tone and sits
+   seamlessly beside the text wordmarks. Width/height are set inline per logo. */
+.marquee-item--logo { color: var(--color-text-muted); }
 .marquee-logo {
   display: block;
-  height: 26px;
-  width: auto;
-  max-width: 132px;
-  object-fit: contain;
+  background-color: currentColor;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+          mask-position: center;
+  -webkit-mask-size: contain;
+          mask-size: contain;
 }
 
 @keyframes marquee-scroll {

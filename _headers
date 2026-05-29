@@ -1,5 +1,5 @@
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-lZPivY3JWl3OGRTyoB26W2/Lv141C6NpAksxEHeONBY=' 'sha256-Y/ef3qUxtt7lVSjGQK0bI5QMUA+l+/G6gCBfutRamUQ='; style-src 'self' https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-lZPivY3JWl3OGRTyoB26W2/Lv141C6NpAksxEHeONBY=' 'sha256-E6XOAjCILZ/AuLwCE5KbjKMVAke40XN7jnAro+2TRVE='; style-src 'self' https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
   Referrer-Policy: no-referrer
   X-Content-Type-Options: nosniff
