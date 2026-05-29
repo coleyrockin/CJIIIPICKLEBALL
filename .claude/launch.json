@@ -6,6 +6,12 @@
       "runtimeExecutable": "python3",
       "runtimeArgs": ["-m", "http.server", "4173", "--bind", "127.0.0.1"],
       "port": 4173
+    },
+    {
+      "name": "local-static-audit",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "4192", "--bind", "127.0.0.1"],
+      "port": 4192
     }
   ]
 }

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-lZPivY3JWl3OGRTyoB26W2/Lv141C6NpAksxEHeONBY=' 'sha256-yJ4dFImUgTp6NVaJesArP/sd2r0OKl4pTD37uPizvws='; style-src 'self' https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-lZPivY3JWl3OGRTyoB26W2/Lv141C6NpAksxEHeONBY=' 'sha256-2ziAW0y8D3foAlvrPeLtBwR7uJbtJq5riu4C8XiLeII='; style-src 'self' https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" />
   <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()" />
   <meta name="referrer" content="no-referrer" />
   <meta name="description" content="CJ's Pickleball – bringing the world together one dink at a time. Find exclusive discount codes, gear picks, and connect with our community." />
@@ -24,6 +24,7 @@
   <title>CJ's Pickleball | Bringing the World Together</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="image" href="images/hero-court.jpg" fetchpriority="high" />
   <link rel="stylesheet" href="css/base.css?v=20260527-split" />
   <link rel="stylesheet" href="css/components.css?v=20260527-split" />
   <link rel="stylesheet" href="css/nav.css?v=20260527-split" />
@@ -48,7 +49,7 @@
 <body class="no-js">
 
   <noscript>
-    <div class="noscript-banner" role="status">
+    <div class="noscript-banner">
       JavaScript is disabled — copy-to-clipboard, scroll reveal, and the animated stats counter are unavailable, but all content and links remain fully usable.
     </div>
   </noscript>
@@ -61,7 +62,7 @@
   <header class="site-header" id="top">
     <nav class="navbar" aria-label="Main navigation">
       <a href="#top" class="nav-logo" aria-label="CJ's Pickleball home">
-        <img src="images/logo.png" alt="CJ's Pickleball Logo" class="logo-img" id="logoImg" />
+        <img src="images/logo.png" alt="CJ's Pickleball Logo" class="logo-img" id="logoImg" width="54" height="54" decoding="async" />
         <span class="logo-text" id="logo-text">CJ's<br /><strong>Pickleball</strong></span>
       </a>
       <button class="nav-toggle" id="navToggle" aria-controls="navMenu" aria-expanded="false" aria-label="Open menu">
@@ -107,7 +108,7 @@
       </div>
       <div class="hero-proof" aria-label="CJ's Pickleball highlights">
         <div>
-          <strong>10+</strong>
+          <strong>10</strong>
           <span>Partner brands</span>
         </div>
         <div>
@@ -201,7 +202,7 @@
     <div class="container">
       <div class="stats-grid reveal-stagger">
         <div class="stat-item reveal">
-          <span class="stat-number" data-target="10" data-suffix="+">10+</span>
+          <span class="stat-number" data-target="10" data-suffix="">10</span>
           <span class="stat-label">Partner Brands</span>
         </div>
         <div class="stat-item reveal">
@@ -457,6 +458,6 @@
 
   <button class="back-to-top" id="backToTop" aria-label="Back to top">&#8593;</button>
 
-  <script src="js/main.js?v=20260527-split" integrity="sha256-yJ4dFImUgTp6NVaJesArP/sd2r0OKl4pTD37uPizvws="></script>
+  <script src="js/main.js?v=20260527-split" integrity="sha256-2ziAW0y8D3foAlvrPeLtBwR7uJbtJq5riu4C8XiLeII="></script>
 </body>
 </html>

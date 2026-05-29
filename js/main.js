@@ -208,9 +208,7 @@
     });
   });
 
-  /* ---- Smooth-scroll active nav highlight ---- */
-  var activeNavTicking = false;
-
+  /* ---- Active nav highlight (driven by unified scroll handler below) ---- */
   function updateActiveNavFromScroll() {
     if (!sections.length || !navLinks.length) return;
     var marker = window.pageYOffset + Math.min(window.innerHeight * 0.35, 220);
@@ -229,24 +227,6 @@
     }
   }
 
-  function requestActiveNavUpdate() {
-    if (activeNavTicking) return;
-    activeNavTicking = true;
-    window.requestAnimationFrame(function () {
-      activeNavTicking = false;
-      updateActiveNavFromScroll();
-    });
-  }
-
-  window.addEventListener('scroll', requestActiveNavUpdate, { passive: true });
-  window.addEventListener('resize', requestActiveNavUpdate, { passive: true });
-  window.addEventListener('hashchange', function () {
-    syncHashSection(true, 'auto');
-    requestActiveNavUpdate();
-  });
-  syncHashSection(true, 'auto');
-  updateActiveNavFromScroll();
-
   /* ---- Scroll Progress Bar ---- */
   var progressEl = document.getElementById('scrollProgress');
   function updateProgress() {
@@ -255,11 +235,40 @@
     var pct = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
     progressEl.style.width = pct + '%';
   }
-  window.addEventListener('scroll', updateProgress, { passive: true });
-  window.addEventListener('resize', updateProgress, { passive: true });
+
+  /* ---- Back to Top (visibility state) ---- */
+  var backToTopBtn = document.getElementById('backToTop');
+  function updateBackToTop() {
+    if (!backToTopBtn) return;
+    backToTopBtn.classList.toggle('back-to-top--visible', window.scrollY > 400);
+  }
+
+  /* ---- Single rAF-throttled scroll handler ----
+     One listener drives active nav, scroll progress, and back-to-top
+     visibility to minimize per-scroll work. */
+  var scrollTicking = false;
+  function onScrollFrame() {
+    scrollTicking = false;
+    updateActiveNavFromScroll();
+    updateProgress();
+    updateBackToTop();
+  }
+  function onScroll() {
+    if (scrollTicking) return;
+    scrollTicking = true;
+    window.requestAnimationFrame(onScrollFrame);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  window.addEventListener('hashchange', function () {
+    syncHashSection(true, 'auto');
+    onScroll();
+  });
+  syncHashSection(true, 'auto');
+  onScrollFrame();
 
   /* ---- Hero Floating Decorations (WAAPI) ---- */
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if (!reducedMotion) {
     document.querySelectorAll('.hero-deco').forEach(function (el, i) {
       var rotate = window.getComputedStyle(el).getPropertyValue('--deco-rotate').trim() || '0deg';
       el.animate(
@@ -303,16 +312,8 @@
     statEls.forEach(function (el) { statObserver.observe(el); });
   }
 
-  /* ---- Back to Top ---- */
-  var backToTopBtn = document.getElementById('backToTop');
+  /* ---- Back to Top click (visibility handled in unified scroll handler) ---- */
   if (backToTopBtn) {
-    window.addEventListener('scroll', function () {
-      if (window.scrollY > 400) {
-        backToTopBtn.classList.add('back-to-top--visible');
-      } else {
-        backToTopBtn.classList.remove('back-to-top--visible');
-      }
-    }, { passive: true });
     backToTopBtn.addEventListener('click', function () {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
