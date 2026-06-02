@@ -20,6 +20,8 @@ jobs:
       - name: Verify required files
         run: |
           test -f _headers
+          test -f robots.txt
+          test -f sitemap.xml
           test -f index.html
           test -f css/base.css
           test -f css/components.css

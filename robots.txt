@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://cjspickleball.netlify.app/sitemap.xml
