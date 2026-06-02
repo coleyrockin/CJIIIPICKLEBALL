@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-lZPivY3JWl3OGRTyoB26W2/Lv141C6NpAksxEHeONBY=' 'sha256-E6XOAjCILZ/AuLwCE5KbjKMVAke40XN7jnAro+2TRVE='; style-src 'self' https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-brNz854dkrCE93W/t1+Diy9NpBLhnHGlJvkT4yts3S4=' 'sha256-E6XOAjCILZ/AuLwCE5KbjKMVAke40XN7jnAro+2TRVE='; style-src 'self' https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" />
   <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()" />
   <meta name="referrer" content="no-referrer" />
   <meta name="description" content="CJ's Pickleball – bringing the world together one dink at a time. Find exclusive discount codes, gear picks, and connect with our community." />
@@ -40,13 +40,43 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "SportsOrganization",
-    "name": "CJ's Pickleball",
-    "url": "https://cjspickleball.netlify.app/",
-    "logo": "https://cjspickleball.netlify.app/images/logo.png",
-    "description": "A worldwide pickleball community sharing tips, exclusive partner discounts, and bringing players together one dink at a time.",
-    "sameAs": [
-      "https://www.facebook.com/people/CJs-Pickleball-Page/100089379470047/"
+    "@graph": [
+      {
+        "@type": "SportsOrganization",
+        "@id": "https://cjspickleball.netlify.app/#organization",
+        "name": "CJ's Pickleball",
+        "url": "https://cjspickleball.netlify.app/",
+        "logo": "https://cjspickleball.netlify.app/images/logo.png",
+        "description": "A worldwide pickleball community sharing tips, exclusive partner discounts, and bringing players together one dink at a time.",
+        "sameAs": [
+          "https://www.facebook.com/people/CJs-Pickleball-Page/100089379470047/"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://cjspickleball.netlify.app/#website",
+        "url": "https://cjspickleball.netlify.app/",
+        "name": "CJ's Pickleball",
+        "publisher": { "@id": "https://cjspickleball.netlify.app/#organization" }
+      },
+      {
+        "@type": "ItemList",
+        "name": "CJ's Pickleball Partner Deals",
+        "description": "Exclusive partner discount links and promo codes curated by CJ's Pickleball.",
+        "numberOfItems": 10,
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Holbrook Pickleball", "url": "https://holbrookpickleball.com/cjroberts" },
+          { "@type": "ListItem", "position": 2, "name": "HUDEF", "url": "https://hudefsport.com?sca_ref=4372136.7bZvbguDdl" },
+          { "@type": "ListItem", "position": 3, "name": "Mint Sport", "url": "https://mintsport.com/discount/cjpickle" },
+          { "@type": "ListItem", "position": 4, "name": "Crown Pickleball", "url": "https://crownpickleball.store/cjroberts" },
+          { "@type": "ListItem", "position": 5, "name": "Revolin Sports", "url": "https://rstr.co/revolin/6321" },
+          { "@type": "ListItem", "position": 6, "name": "FLiK Pickleball", "url": "https://flikpickleball.com/?ref=CJROBERTS" },
+          { "@type": "ListItem", "position": 7, "name": "ONIX Pickleball", "url": "https://www.onixpickleball.com/cjpickle" },
+          { "@type": "ListItem", "position": 8, "name": "TopspinPro Training Aid", "url": "https://topspinpro.com/pickleball-training-aid/ref/cjr" },
+          { "@type": "ListItem", "position": 9, "name": "SpinPro", "url": "https://topspinpro.com/spinpro-for-pickleball/ref/cjr" },
+          { "@type": "ListItem", "position": 10, "name": "NETX Quiet Pickleballs", "url": "https://netxbrand.com?sca_ref=9376042.qoX7azPHqpq" }
+        ]
+      }
     ]
   }
   </script>
