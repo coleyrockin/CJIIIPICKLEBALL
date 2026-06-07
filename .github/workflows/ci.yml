@@ -29,6 +29,9 @@ jobs:
           test -f css/hero.css
           test -f css/sections.css
           test -f css/responsive.css
+          test -f css/fonts.css
+          test -f fonts/montserrat-latin.woff2
+          test -f fonts/open-sans-latin.woff2
           test -f js/main.js
           test -f images/hero-court.jpg
           test -f images/logo.png
