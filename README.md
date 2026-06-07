@@ -1,222 +1,64 @@
-<div align="center">
+# CJ's Pickleball
 
-# 🏓 CJ's Pickleball
+A fast, hand-built landing page for CJ's Pickleball — a worldwide pickleball community that shares real partner discount codes and connects players around the globe.
 
-**Bringing the World Together Through Pickleball**
-
-[![CI](https://github.com/coleyrockin/CJIIIPICKLEBALL/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/coleyrockin/CJIIIPICKLEBALL/actions/workflows/ci.yml)
-[![Live Site](https://img.shields.io/badge/Live%20Site-cjspickleball.netlify.app-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://cjspickleball.netlify.app)
-[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
-[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
-[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-[![License: MIT](https://img.shields.io/badge/License-MIT-2e7d32?style=for-the-badge)](LICENSE)
-
-</div>
-
-> The repo name **CJIII** stands for "CJ the third" — the site is for CJ Roberts III. Not a typo.
-
-
----
+[Live site](https://cjspickleball.netlify.app) · [Roadmap](ROADMAP.md) · [![CI](https://github.com/coleyrockin/CJIIIPICKLEBALL/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/coleyrockin/CJIIIPICKLEBALL/actions/workflows/ci.yml)
 
 ![CJ's Pickleball — hero preview](docs/screenshot.jpg)
 
----
+> The repo name **CJIII** is "CJ the third" — the site's for CJ Roberts III. Not a typo.
 
-## Overview
+It does one job and does it well: get players to CJ's community and his real partner deals without a wasted byte. No framework, no build step, no tracking scripts, no cookie banner — just fast, accessible, honest static pages behind a hardened Content-Security-Policy. If you're a player, it's the shortest path to the codes. If you're a developer, it's a working reference for shipping a polished marketing site on pure HTML/CSS/JS.
 
-A polished, single-page landing site for **CJ's Pickleball** — a worldwide pickleball community sharing tips, exclusive partner discounts, and connection points with players around the globe.
-
-Built with semantic HTML5, modern CSS, and vanilla JavaScript. **Zero frameworks, zero build step, zero runtime dependencies.** Just clean, performant, hand-crafted code.
-
-🔗 **Live site:** [cjspickleball.netlify.app](https://cjspickleball.netlify.app)
-📘 **Facebook:** [CJ's Pickleball Page](https://www.facebook.com/people/CJs-Pickleball-Page/100089379470047/)
-🔖 **Roadmap:** [ROADMAP.md](ROADMAP.md)
-
----
-
-## Highlights
-
-- 🎨 **Distinctive hero** — full-bleed court photography, layered contrast, and animated court-line accents via the Web Animations API
-- 📊 **Animated stats counter** — numbers count up as the section enters the viewport
-- 🎢 **Partner marquee strip** — gentle, infinite scroll showcasing every brand
-- 📈 **Scroll progress bar** — fixed top indicator that tracks page position
-- 🎯 **Active section nav** — current section is highlighted from scroll position and hash navigation
-- 💸 **Copy-to-clipboard codes** — one-click coupon copy with a toast confirmation
-- ⬆️ **Back-to-top button** — appears after scrolling, smooth-scrolls to the hero
-- ✨ **Scroll-reveal animations** — staggered entrance for cards and sections
-- ♿ **A11y-first** — skip link, semantic landmarks, ARIA labels, keyboard focus rings, `prefers-reduced-motion` honored across CSS and WAAPI animations
-- 🛡️ **Hardened security headers** — Netlify `_headers` plus meta fallbacks for strict CSP, Permissions-Policy, `referrer=no-referrer`, and `upgrade-insecure-requests`
-- ✅ **CI smoke checks** — verifies required files, JavaScript syntax, CSP JSON-LD hash freshness, safe external-link attributes, and local asset references
-- 📱 **Truly responsive** — mobile-first breakpoints at 480 / 700 / 900 px, with a hamburger menu and stacked grids
-- 🔍 **SEO-ready** — Open Graph, Twitter Card, JSON-LD organization schema, canonical link
-
----
-
-## Tech Stack
-
-| Layer | Technology |
-|---|---|
-| Markup | HTML5 (semantic landmarks, ARIA) |
-| Styling | CSS3 — Grid, Flexbox, custom properties, `clamp()` |
-| Interactivity | Vanilla JavaScript (IIFE, no globals) |
-| Animation | CSS transitions + Web Animations API (WAAPI) |
-| Fonts | Google Fonts — Montserrat, Open Sans |
-| Hosting | Netlify (continuous deployment from `main`) |
-
----
-
-## Getting Started
+## Installation
 
 ```bash
 git clone https://github.com/coleyrockin/CJIIIPICKLEBALL.git
 cd CJIIIPICKLEBALL
 ```
 
-Open the file directly:
+That's the whole install. Nothing to pull, nothing to build.
+
+## Usage
+
+Open it straight from disk:
 
 ```bash
 open index.html
 ```
 
-Or run the local dev server (defaults to `http://127.0.0.1:4173`):
+Or serve it locally (defaults to `http://127.0.0.1:4173`; pass a port and host to override):
 
 ```bash
 ./scripts/start-local.sh
-```
-
-You can override the port and host:
-
-```bash
 ./scripts/start-local.sh 8080 0.0.0.0
 ```
 
----
+Deploying is just `git push`: Netlify watches `main` and publishes the static files as-is in about half a minute. Security and caching headers live in `_headers` (with meta fallbacks in `index.html`) — there's no build to configure.
 
-## Project Structure
+## Tech Stack
 
-```
-CJIIIPICKLEBALL/
-├── css/
-│   ├── base.css            # Reset, root variables, typography, base utilities
-│   ├── components.css      # Buttons, marquee, toast, scroll progress, reveal, back-to-top
-│   ├── nav.css             # Site header, navbar, hamburger toggle
-│   ├── hero.css            # Hero section + floating decorations
-│   ├── sections.css        # About, stats, discounts, community, contact, footer
-│   └── responsive.css      # All media queries (loaded LAST to override base styles)
-├── js/
-│   └── main.js             # Nav, copy-to-clipboard, scroll reveal, stats, back-to-top
-├── images/                 # Logos and hero photography
-│   ├── logo.png
-│   ├── logo.svg
-│   └── hero-court.jpg
-├── docs/
-│   └── screenshot.jpg      # Used for README + Open Graph preview
-├── .github/workflows/
-│   └── ci.yml              # Static smoke checks for pushes and pull requests
-├── scripts/
-│   ├── start-local.sh      # Local dev server (python3 http.server)
-│   └── check-csp-hashes.js # Verifies CSP + SRI hashes for JSON-LD and main.js
-├── index.html              # Single-page entry point
-├── _headers                # Netlify response headers for security + caching
-├── .nojekyll               # Disable Jekyll processing on static hosts
-├── LICENSE                 # MIT
-└── README.md
-```
+- **HTML5 / CSS3 / vanilla JS** — semantic markup, CSS Grid + custom properties, one dependency-free IIFE. No framework, no bundler.
+- **Animation** — CSS transitions plus the Web Animations API, all gated behind `prefers-reduced-motion`.
+- **Fonts** — Montserrat + Open Sans (Google Fonts today; self-hosting is on the roadmap).
+- **Hosting** — Netlify, continuous deploy from `main`.
+- **Security** — hash-pinned CSP + SRI and locked-down response headers, enforced in CI.
 
----
+CSS is split across six files — `base · components · nav · hero · sections · responsive`, loaded in that order so responsive overrides win. `js/main.js` handles navigation, copy-to-clipboard, scroll reveals, and the stats counter.
 
-## Deployment
+## Contributing
 
-Hosted on **Netlify** with continuous deployment from `main`:
-
-```
-Push to main → Netlify auto-deploys → live in ~30s
-```
-
-No build step. The site is plain static files; Netlify serves them as-is. Custom security headers are declared in `_headers`, with compatible meta fallbacks in `index.html`.
-
-To deploy your own fork, connect the repo in the Netlify dashboard and accept the default static-site settings.
-
----
-
-## Project status
-
-- ✅ Implemented: static single-page site, responsive UI, navigation behavior, copy-to-clipboard, security headers, and CI smoke checks.
-- ⚪ Planned: content governance and stronger release/process documentation (tracked in `ROADMAP.md`).
-
----
-
-## How to test
-
-No JavaScript build tooling is required. Run the documentation-safe checks:
+PRs welcome. Keep it vanilla — no framework, no build step — and run the checks before you push:
 
 ```bash
-node --check js/main.js
-node scripts/check-csp-hashes.js
-test -f _headers && test -f index.html && test -f js/main.js && \
-  test -f css/base.css && test -f css/components.css && test -f css/nav.css && \
-  test -f css/hero.css && test -f css/sections.css && test -f css/responsive.css && \
-  test -f images/hero-court.jpg && test -f images/logo.png && test -f docs/screenshot.jpg
+node --check js/main.js              # JS parses
+node scripts/check-csp-hashes.js     # CSP + SRI hashes in sync
 ```
 
----
+One gotcha worth knowing up front: **the CSP is hash-pinned.** If you edit `js/main.js` or the inline JSON-LD block, its SHA-256 changes and the browser will silently refuse to load it — broken counter, dead nav, missing structured data. Recompute the hash in three places — the `<meta>` CSP in `index.html`, the CSP line in `_headers`, and the `integrity` attribute on the `main.js` `<script>` tag — then re-run the check script. It prints the exact hash to paste on drift, and CI runs the same check, so a stale hash fails the build rather than production.
 
-## CSP Hash Maintenance
-
-The Content-Security-Policy is hash-pinned. Two `'sha256-...'` entries appear in
-both the `<meta http-equiv="Content-Security-Policy">` tag in [index.html](index.html)
-and the `Content-Security-Policy` line in [_headers](_headers):
-
-1. The inline `<script type="application/ld+json">` JSON-LD organization block.
-2. The external `js/main.js` file (also pinned via the `integrity="..."` SRI
-   attribute on its `<script src>` tag).
-
-**Any change to the JSON-LD block or to `js/main.js` invalidates its hash.**
-The browser will silently refuse to load the resource and the site will be
-visibly broken (broken counter, missing nav behavior, missing structured data).
-
-To verify both hashes are fresh:
-
-```bash
-node scripts/check-csp-hashes.js
-```
-
-On drift the script prints the file at fault and the exact hash to substitute,
-then exits non-zero — CI uses this same script. To update by hand:
-
-```bash
-node -e "const fs=require('fs'),c=require('crypto');console.log('sha256-'+c.createHash('sha256').update(fs.readFileSync('js/main.js')).digest('base64'))"
-```
-
-Paste the result into:
-
-- `script-src` in [index.html](index.html) `<meta http-equiv="Content-Security-Policy">`
-- `script-src` in [_headers](_headers)
-- the `integrity="..."` attribute on `<script src="js/main.js" ...>` in [index.html](index.html)
-
-Then re-run `node scripts/check-csp-hashes.js` to confirm.
-
----
-
-## Browser Support
-
-Manual checks are performed against modern Chromium/WebKit/Gecko browsers, with accessibility checks included in the roadmap.
-Graceful degradation:
-
-- No IntersectionObserver → all reveal animations fall back to visible.
-- No `navigator.clipboard` → falls back to `document.execCommand('copy')`.
-- `prefers-reduced-motion: reduce` → reveals, marquee, stats counter, and floating paddles all stop animating.
-
----
+See [ROADMAP.md](ROADMAP.md) for what's planned and what's deliberately out of scope.
 
 ## License
 
 [MIT](LICENSE) © Boyd Roberts
-
----
-
-<div align="center">
-
-Built with 🏓 by [Boyd Roberts](https://github.com/coleyrockin)
-
-</div>
