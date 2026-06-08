@@ -1,0 +1,17 @@
+# CJ's Pickleball — Netlify build/publish config.
+#
+# Security + caching HEADER RULES live in _headers (the single hash-pinned,
+# CI-verified source of truth). Do NOT duplicate them here: Netlify merges
+# both sources and they would silently drift, bypassing the CSP hash-drift
+# guard in scripts/check-csp-hashes.js.
+#
+# This file exists so the GitHub-connected deploy has an explicit, in-repo
+# publish dir and a deploy-time gate (regenerate app.css + verify CSP/SRI
+# hashes). The site root IS the repo root (index.html at top level).
+
+[build]
+  publish = "."
+  command = "bash scripts/build-css.sh && node scripts/check-csp-hashes.js"
+
+[build.environment]
+  NODE_VERSION = "22"

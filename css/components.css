@@ -23,7 +23,7 @@
 .btn:active { transform: translateY(0); }
 
 .btn-primary {
-  background: linear-gradient(135deg, #2384ff, var(--color-facebook-dark));
+  background: linear-gradient(135deg, #1f6fe0, var(--color-facebook-dark));
   color: #fff;
   box-shadow: 0 12px 24px rgba(24,119,242,.22);
 }

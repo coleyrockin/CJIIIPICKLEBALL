@@ -74,7 +74,7 @@
 .nav-link:hover { color: var(--color-primary); background: rgba(46,125,50,.08); }
 
 .navbar .nav-cta {
-  background: linear-gradient(135deg, #2384ff, var(--color-facebook-dark));
+  background: linear-gradient(135deg, #1f6fe0, var(--color-facebook-dark));
   color: #fff;
   border-radius: var(--radius-pill);
   padding: 8px 18px;
@@ -86,8 +86,12 @@
 .nav-toggle {
   display: none;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 5px;
-  padding: 8px;
+  padding: 10px;
+  min-width: 44px;   /* WCAG 2.5.8 — courtside one-handed tap target */
+  min-height: 44px;
 }
 .hamburger {
   display: block;

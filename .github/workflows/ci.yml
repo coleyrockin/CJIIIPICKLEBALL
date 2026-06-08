@@ -30,6 +30,8 @@ jobs:
           test -f css/sections.css
           test -f css/responsive.css
           test -f css/fonts.css
+          test -f css/app.css
+          test -f scripts/build-css.sh
           test -f fonts/montserrat-latin.woff2
           test -f fonts/open-sans-latin.woff2
           test -f js/main.js
@@ -40,6 +42,12 @@ jobs:
 
       - name: Check JavaScript syntax
         run: node --check js/main.js
+
+      - name: Verify css/app.css is in sync with its source files
+        run: |
+          bash scripts/build-css.sh
+          git diff --exit-code css/app.css \
+            || { echo "::error::css/app.css is stale — run ./scripts/build-css.sh and commit the result."; exit 1; }
 
       - name: Check CSP & SRI hashes (JSON-LD + main.js)
         run: node scripts/check-csp-hashes.js

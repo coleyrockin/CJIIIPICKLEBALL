@@ -17,7 +17,7 @@
   --color-bg-alt: #eef4ea;
   --color-surface: #ffffff;
   --color-text: #172414;
-  --color-text-muted: #4a5a45;
+  --color-text-muted: #3f4f3b;   /* AA on all bands; clears 7:1 sunlight bar on light/alt */
   --color-border: #d8e5d1;
 
   --font-heading: 'Montserrat', sans-serif;
