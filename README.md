@@ -40,7 +40,7 @@ Deploying is just `git push`: Netlify watches `main` and publishes the static fi
 
 - **HTML5 / CSS3 / vanilla JS** — semantic markup, CSS Grid + custom properties, one dependency-free IIFE. No framework, no bundler.
 - **Animation** — CSS transitions plus the Web Animations API, all gated behind `prefers-reduced-motion`.
-- **Fonts** — Montserrat + Open Sans (Google Fonts today; self-hosting is on the roadmap).
+- **Fonts** — Montserrat + Open Sans, self-hosted as subsetted `woff2` (no Google Fonts request; `font-src 'self'` in the CSP).
 - **Hosting** — Netlify, continuous deploy from `main`.
 - **Security** — hash-pinned CSP + SRI and locked-down response headers, enforced in CI.
 

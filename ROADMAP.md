@@ -13,18 +13,13 @@ framework, zero build step, hardened CSP, shipped by hand on `main` → Netlify.
 ## Now
 *Active work. Pure CSS/HTML/asset changes — highest ROI, lowest risk, no JS-hash churn.*
 
-- **Self-host the fonts.** Bundle Montserrat + Open Sans (both OFL, redistributable) as local `woff2`
-  and drop Google Fonts entirely. Kills the last render-blocking third-party request *and* lets the
-  CSP shed two external origins (`fonts.googleapis.com`, `fonts.gstatic.com`). → `index.html`,
-  `_headers`, new `css/fonts.css` + `fonts/`.
 - **Image hygiene.** `loading="lazy"` + `decoding="async"` on every below-fold image; explicit
   `width`/`height` on all `<img>` to pin CLS to zero. The hero preload stays exactly as-is — it's the
   LCP element, never lazy-loaded.
 - **Finish Lighthouse 100 / WCAG AAA.** Close the last gaps across all four categories; screen-reader
   pass on nav + marquee; re-verify AAA contrast on every band.
 
-**Done when:** Lighthouse 100×4, axe-clean, keyboard-complete, no external font origins in the CSP,
-`check-csp-hashes.js` green.
+**Done when:** Lighthouse 100×4, axe-clean, keyboard-complete, `check-csp-hashes.js` green.
 
 ## Next
 *Queued directly behind Now.*
@@ -77,6 +72,7 @@ framework, zero build step, hardened CSP, shipped by hand on `main` → Netlify.
 | SEO & structured data | robots, sitemap, single `@graph` JSON-LD (Org + WebSite + ItemList of all 10 deals) | `92ed5b8` |
 | Affiliate compliance | Visible FTC disclosure (intro + footer); `rel="sponsored"` on all 10 partner links | `8718010` |
 | CSS split + CSP automation | 6-file CSS architecture; hash-pinned CSP/SRI enforced by `check-csp-hashes.js` | `c6066ed` |
+| Self-hosted fonts | Montserrat + Open Sans subsetted to local `woff2`; Google Fonts dropped; CSP `font-src 'self'` | `d64e033` |
 | CI gate | `node --check`, hash freshness, external-link safety, required-files check | ✅ |
 
 ---

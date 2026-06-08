@@ -267,20 +267,6 @@
   syncHashSection(true, 'auto');
   onScrollFrame();
 
-  /* ---- Hero Floating Decorations (WAAPI) ---- */
-  if (!reducedMotion) {
-    document.querySelectorAll('.hero-deco').forEach(function (el, i) {
-      var rotate = window.getComputedStyle(el).getPropertyValue('--deco-rotate').trim() || '0deg';
-      el.animate(
-        [
-          { transform: 'translateY(0px) rotate(' + rotate + ')' },
-          { transform: 'translateY(-18px) rotate(' + rotate + ')' }
-        ],
-        { duration: 3200 + i * 400, iterations: Infinity, direction: 'alternate', easing: 'ease-in-out', delay: i * 600 }
-      );
-    });
-  }
-
   /* ---- Stats Counter ----
      Markup ships with the final value so the page is fully usable with
      JS disabled. With JS, we reset to "0<suffix>" and animate up on enter. */
