@@ -28,3 +28,10 @@ ORDER=(
 } > css/app.css
 
 echo "Built css/app.css from ${#ORDER[@]} sources ($(wc -c < css/app.css) bytes)."
+
+# Stamp sitemap <lastmod> at build time so the deployed copy is never stale.
+# (Runs in CI too — CI's freshness diff only covers css/app.css, so this is safe.)
+TODAY="$(date +%Y-%m-%d)"
+tmp="$(mktemp)"
+sed "s|<lastmod>[^<]*</lastmod>|<lastmod>${TODAY}</lastmod>|" sitemap.xml > "$tmp" && mv "$tmp" sitemap.xml
+echo "Stamped sitemap.xml lastmod ${TODAY}."

@@ -52,6 +52,18 @@
 }
 
 /* ---- Partner Marquee Strip ---- */
+.marquee-label {
+  background: #fff;
+  margin: 0;
+  padding: 18px 16px 0;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
 .marquee-strip {
   background: #fff;
   border-bottom: 1px solid var(--color-border);
@@ -230,4 +242,17 @@
   width: 1px;
   height: 1px;
   opacity: 0;
+}
+
+/* ---- 404 page ---- */
+.error-page .section-header {
+  text-align: center;
+  padding: 18vh 16px 10vh;
+}
+.error-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 2rem;
 }

@@ -141,6 +141,13 @@
     reveals.forEach(function (el) { el.classList.add('reveal--visible'); });
   }
 
+  // Printing never fires scroll/intersection — force everything visible.
+  // (A print stylesheet covers the same case; this keeps the DOM state
+  // consistent if the user cancels the dialog and keeps browsing.)
+  window.addEventListener('beforeprint', function () {
+    reveals.forEach(function (el) { el.classList.add('reveal--visible'); });
+  });
+
   function getSectionFromHash(hash) {
     if (!hash || hash === '#') return null;
     var id = hash.charAt(0) === '#' ? hash.slice(1) : hash;
@@ -208,13 +215,30 @@
     });
   });
 
-  /* ---- Active nav highlight (driven by unified scroll handler below) ---- */
+  /* ---- Active nav highlight (driven by unified scroll handler below) ----
+     Section tops are cached so the per-frame scroll handler never forces a
+     layout (reading offsetTop after style writes was flagged by Lighthouse).
+     Recomputed on resize and when a FAQ <details> opens/closes. */
+  var sectionTops = [];
+  function cacheSectionTops() {
+    sectionTops = [];
+    sections.forEach(function (section) {
+      sectionTops.push({ id: section.id, top: section.offsetTop });
+    });
+  }
+  cacheSectionTops();
+  window.addEventListener('load', cacheSectionTops);
+  window.addEventListener('resize', cacheSectionTops, { passive: true });
+  document.querySelectorAll('details').forEach(function (d) {
+    d.addEventListener('toggle', cacheSectionTops);
+  });
+
   function updateActiveNavFromScroll() {
-    if (!sections.length || !navLinks.length) return;
+    if (!sectionTops.length || !navLinks.length) return;
     var marker = window.pageYOffset + Math.min(window.innerHeight * 0.35, 220);
     var currentSection = null;
-    sections.forEach(function (section) {
-      if (section.offsetTop <= marker) {
+    sectionTops.forEach(function (section) {
+      if (section.top <= marker) {
         currentSection = section;
       }
     });
@@ -272,9 +296,15 @@
      JS disabled. With JS, we reset to "0<suffix>" and animate up on enter. */
   var statEls = document.querySelectorAll('.stat-number[data-target]');
   if (statEls.length && 'IntersectionObserver' in window && !reducedMotion) {
-    statEls.forEach(function (el) {
+    function formatStat(el, value) {
       var suffix = el.getAttribute('data-suffix') || '';
-      el.textContent = '0' + suffix;
+      if (el.getAttribute('data-format') === 'k') {
+        return (Math.round(value / 100) / 10) + 'K' + suffix;
+      }
+      return Math.round(value).toLocaleString() + suffix;
+    }
+    statEls.forEach(function (el) {
+      el.textContent = formatStat(el, 0);
     });
     var statObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -282,14 +312,13 @@
         statObserver.unobserve(entry.target);
         var el = entry.target;
         var target = parseInt(el.getAttribute('data-target'), 10);
-        var suffix = el.getAttribute('data-suffix') || '';
         var duration = 1500;
         var startTime = null;
         function step(ts) {
           if (!startTime) startTime = ts;
           var p = Math.min((ts - startTime) / duration, 1);
           var eased = 1 - Math.pow(1 - p, 3);
-          el.textContent = Math.round(eased * target).toLocaleString() + suffix;
+          el.textContent = formatStat(el, eased * target);
           if (p < 1) requestAnimationFrame(step);
         }
         requestAnimationFrame(step);

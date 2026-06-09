@@ -108,3 +108,14 @@
   .deal-badge { right: 16px; max-width: 150px; text-align: center; }
   .deal-card::before { left: 16px; }
 }
+
+/* ---- Print ----
+   Reveal animations are scroll-triggered; printing never scrolls, so force
+   everything visible and drop chrome that makes no sense on paper. */
+@media print {
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .scroll-progress,
+  .back-to-top,
+  .nav-toggle,
+  .marquee-strip { display: none !important; }
+}
