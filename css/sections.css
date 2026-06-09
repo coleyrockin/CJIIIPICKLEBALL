@@ -193,7 +193,7 @@
   background: rgba(255,255,255,.78);
   color: var(--color-primary-dark);
   font-family: var(--font-heading);
-  font-size: .72rem;
+  font-size: .78rem;
   font-weight: 800;
   letter-spacing: .07em;
   text-transform: uppercase;
@@ -236,7 +236,7 @@
   background: var(--color-primary-dark);
   color: #fff;
   font-family: var(--font-heading);
-  font-size: .72rem;
+  font-size: .78rem;
   font-weight: 900;
   letter-spacing: .08em;
 }
@@ -271,7 +271,7 @@
   background: rgba(36,113,57,.1);
   color: var(--color-primary-dark);
   font-family: var(--font-heading);
-  font-size: .66rem;
+  font-size: .75rem;
   font-weight: 700;
   letter-spacing: .08em;
   text-transform: uppercase;
@@ -489,7 +489,7 @@
   display: block;
   margin-bottom: 8px;
   font-family: var(--font-heading);
-  font-size: .68rem;
+  font-size: .75rem;
   font-weight: 800;
   letter-spacing: .1em;
   text-transform: uppercase;
